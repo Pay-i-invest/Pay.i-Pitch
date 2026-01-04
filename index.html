@@ -1,0 +1,2765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay.i - AI-Powered AP & Payroll Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            position: relative;
+            scroll-snap-align: start;
+            page-break-after: always;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #f4d03f;
+        }
+
+        .tagline {
+            font-size: 2.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-top: 25px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .brand-line {
+            width: 320px;
+            height: 6px;
+            background: linear-gradient(90deg, #f39c12, #16a085);
+            margin: 25px auto;
+            border-radius: 3px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            min-height: 180px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #f4d03f;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 220px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: #f4d03f;
+            line-height: 1;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 20px;
+            color: #f4d03f;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .navigation {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            margin: 12px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #f4d03f;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(244, 208, 63, 0.6);
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1rem;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #f4d03f;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 25px;
+                min-height: 100vh;
+            }
+            .slide h1 { 
+                font-size: 2.8rem; 
+                margin-bottom: 25px;
+            }
+            .slide h2 { 
+                font-size: 2rem; 
+                margin-bottom: 35px;
+            }
+            .stat-grid, .feature-grid { 
+                grid-template-columns: 1fr; 
+                gap: 25px;
+                margin-top: 30px;
+            }
+        }
+
+        /* ===== PAY.I LOGO STYLES ===== */
+        .payi-logo {
+            display: inline-flex;
+            align-items: baseline;
+            font-weight: inherit;
+            letter-spacing: inherit;
+            font-size: inherit;
+        }
+        .payi-logo .arrow {
+            color: #f4d03f;
+            display: inline-flex;
+            align-items: flex-end;
+            margin: 0 0.02em;
+        }
+        .payi-logo .arrow svg {
+            width: 0.55em;
+            height: 0.55em;
+            transform: translateY(0.08em);
+        }
+        .payi-logo .i-letter {
+            color: #f4d03f;
+        }
+        .payi-logo-xl {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+        .payi-logo-xl .arrow svg {
+            width: 0.6em;
+            height: 0.6em;
+            transform: translateY(0.1em);
+            filter: drop-shadow(0 0 15px rgba(244, 208, 63, 0.5));
+            animation: arrow-pulse 2s ease-in-out infinite;
+        }
+        @keyframes arrow-pulse {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(244, 208, 63, 0.5)) drop-shadow(0 0 20px rgba(244, 208, 63, 0.3));
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(244, 208, 63, 0.8)) drop-shadow(0 0 40px rgba(244, 208, 63, 0.5));
+            }
+        }
+
+        /* ===== SLIDE 4: PLATFORM DEMO ANIMATION STYLES ===== */
+        .demo-phone {
+            transition: opacity 0.5s ease, filter 0.5s ease;
+        }
+        .demo-phone.dimmed {
+            opacity: 0.4;
+            filter: brightness(0.6);
+        }
+        
+        /* Employee Demo Styles */
+        .ee-demo-phone {
+            transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+        }
+        .ee-demo-phone.ee-dimmed {
+            opacity: 0.4;
+            filter: brightness(0.6);
+        }
+        .ee-demo-phone.ee-active {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(39, 174, 96, 0.3) !important;
+        }
+        .ee-highlight {
+            animation: eeGlow 0.6s ease-out;
+        }
+        @keyframes eeGlow {
+            0% { box-shadow: 0 0 0 rgba(39, 174, 96, 0); }
+            50% { box-shadow: 0 0 20px rgba(39, 174, 96, 0.5); }
+            100% { box-shadow: 0 0 0 rgba(39, 174, 96, 0); }
+        }
+        .ee-bundle-fill {
+            transition: width 0.8s ease-out;
+        }
+        
+        .demo-item {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        .demo-item.animate-in {
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .demo-total {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .demo-total.animate-in {
+            animation: scaleIn 0.4s ease-out forwards;
+        }
+        @keyframes scaleIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+        .demo-badge {
+            opacity: 0;
+        }
+        .demo-badge.animate-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .demo-balance-card {
+            transition: all 0.5s ease;
+        }
+        .demo-balance-card.glow {
+            border-color: rgba(244, 208, 63, 0.6) !important;
+            box-shadow: 0 0 30px rgba(244, 208, 63, 0.3);
+        }
+        .demo-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            background: rgba(244, 208, 63, 0.2) !important;
+            border-color: #f4d03f !important;
+        }
+        .demo-button.clicked {
+            background: linear-gradient(135deg, #f4d03f, #16a085) !important;
+            border-color: #f4d03f !important;
+            color: #1a1a1a !important;
+            box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
+        }
+        .demo-confirm-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .demo-confirm-button .progress-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(39, 174, 96, 0.5);
+            border-radius: 12px;
+            z-index: 1;
+        }
+        .demo-confirm-button.processing .progress-bar {
+            animation: progressFill 1.5s ease-out forwards;
+        }
+        @keyframes progressFill {
+            to { width: 100%; }
+        }
+        .demo-confirm-button .btn-text {
+            position: relative;
+            z-index: 2;
+        }
+        .demo-confirm-button.complete {
+            background: #27ae60 !important;
+        }
+        .demo-confirm-button.complete .btn-text {
+            display: none;
+        }
+        .demo-confirm-button .checkmark {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+        .demo-confirm-button.complete .checkmark {
+            display: inline;
+        }
+
+        /* Invoice Queue Styles */
+        .invoice-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .invoice-item.pending { border-left-color: #f39c12; }
+        .invoice-item.approved { border-left-color: #27ae60; }
+        .invoice-item.processing { border-left-color: #3498db; }
+
+        /* ===== SLIDE 6: DIFFERENTIATORS ===== */
+        .diff-container {
+            display: flex;
+            gap: 25px;
+            max-width: 1400px;
+            margin-top: 30px;
+        }
+
+        .diff-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s ease;
+        }
+
+        .diff-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .diff-card:hover {
+            background: rgba(244, 208, 63, 0.1);
+            border-color: rgba(244, 208, 63, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f4d03f, #16a085);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease 0.3s;
+        }
+
+        .diff-card.visible::before {
+            transform: scaleX(1);
+        }
+
+        .diff-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .diff-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f4d03f;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .diff-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .diff-stat-box {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.2));
+            border: 1px solid rgba(39, 174, 96, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .diff-stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+
+        .diff-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SLIDE 8: INFRASTRUCTURE STYLES ===== */
+        .infra-section-title {
+            font-size: 1.2rem;
+            color: #f4d03f;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .infra-architecture-stack {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .infra-arch-layer {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 8px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .infra-arch-layer:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(244, 208, 63, 0.3);
+        }
+
+        .infra-arch-layer.active {
+            background: rgba(244, 208, 63, 0.15);
+            border-color: rgba(244, 208, 63, 0.5);
+            box-shadow: 0 0 20px rgba(244, 208, 63, 0.2);
+        }
+
+        .infra-layer-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .infra-layer-icon {
+            font-size: 1.2rem;
+        }
+
+        .infra-layer-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f4d03f;
+        }
+
+        .infra-layer-tech {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.4;
+        }
+
+        .infra-services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .infra-service-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 6px;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .infra-service-box.active {
+            background: rgba(22, 160, 133, 0.3);
+            border-color: #16a085;
+            box-shadow: 0 0 15px rgba(22, 160, 133, 0.3);
+        }
+
+        .infra-service-icon {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .infra-connector {
+            position: relative;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .infra-connector-line {
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(244, 208, 63, 0.3), rgba(22, 160, 133, 0.3));
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .infra-data-packet {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #f4d03f;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(244, 208, 63, 0.8);
+        }
+
+        .infra-data-packet.animate-down {
+            animation: infraPacketDown 1.5s ease-in-out infinite;
+        }
+
+        @keyframes infraPacketDown {
+            0% { top: -7px; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { top: calc(100% + 7px); opacity: 0; }
+        }
+
+        .infra-batch-flow {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .infra-batch-node {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .infra-batch-node.active {
+            background: rgba(244, 208, 63, 0.15);
+            border-color: rgba(244, 208, 63, 0.5);
+            box-shadow: 0 0 25px rgba(244, 208, 63, 0.3);
+        }
+
+        .infra-batch-node.processing {
+            animation: infraProcessingPulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes infraProcessingPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(244, 208, 63, 0.2); }
+            50% { box-shadow: 0 0 35px rgba(244, 208, 63, 0.5); }
+        }
+
+        .infra-node-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f4d03f;
+            margin-bottom: 4px;
+        }
+
+        .infra-node-subtitle {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .infra-payment-request {
+            background: linear-gradient(135deg, rgba(244, 208, 63, 0.2), rgba(22, 160, 133, 0.2));
+            border: 2px solid rgba(244, 208, 63, 0.4);
+        }
+
+        .infra-request-example {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .infra-v-connector {
+            display: flex;
+            justify-content: center;
+            height: 28px;
+            position: relative;
+        }
+
+        .infra-v-line {
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(244, 208, 63, 0.4), rgba(22, 160, 133, 0.4));
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .infra-v-arrow {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid rgba(22, 160, 133, 0.6);
+        }
+
+        .infra-rails-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .infra-rail {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .infra-rail-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .infra-rail-box.ach { border-color: rgba(52, 152, 219, 0.3); }
+        .infra-rail-box.crypto { border-color: rgba(155, 89, 182, 0.3); }
+        .infra-rail-box.wire { border-color: rgba(39, 174, 96, 0.3); }
+
+        .infra-rail-box.active.ach { 
+            background: rgba(52, 152, 219, 0.2); 
+            border-color: rgba(52, 152, 219, 0.6);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        }
+        .infra-rail-box.active.crypto { 
+            background: rgba(155, 89, 182, 0.2); 
+            border-color: rgba(155, 89, 182, 0.6);
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+        }
+        .infra-rail-box.active.wire { 
+            background: rgba(39, 174, 96, 0.2); 
+            border-color: rgba(39, 174, 96, 0.6);
+            box-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
+        }
+
+        .infra-rail-icon {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+
+        .infra-rail-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .infra-rail-name.ach { color: #3498db; }
+        .infra-rail-name.crypto { color: #9b59b6; }
+        .infra-rail-name.wire { color: #27ae60; }
+
+        .infra-rail-provider {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .infra-branch-connector {
+            height: 35px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .infra-branch-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .infra-branch-path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 2;
+        }
+
+        .infra-branch-path.animated {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+
+        .infra-branch-path.ach.animate { animation: infraDrawPath 0.6s ease-out forwards; stroke: #3498db; }
+        .infra-branch-path.crypto.animate { animation: infraDrawPath 0.6s ease-out 0.15s forwards; stroke: #9b59b6; }
+        .infra-branch-path.wire.animate { animation: infraDrawPath 0.6s ease-out 0.3s forwards; stroke: #27ae60; }
+
+        @keyframes infraDrawPath {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .infra-key-components {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .infra-component-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            padding: 6px 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .infra-component-tag .infra-tag-icon {
+            font-size: 0.75rem;
+        }
+
+        .infra-compact-container {
+            display: flex;
+            gap: 50px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .infra-infrastructure-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .infra-batch-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .replay-btn {
+            margin-top: 25px;
+            background: transparent;
+            border: 2px solid #f4d03f;
+            color: #f4d03f;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .replay-btn:hover {
+            background: #f4d03f;
+            color: #1a1a1a;
+        }
+
+        /* AI Flow Diagram Styles */
+        .ai-flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1300px;
+            margin-top: 40px;
+        }
+
+        .ai-flow-step {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            flex: 1;
+            max-width: 220px;
+        }
+
+        .ai-flow-step.active {
+            background: rgba(244, 208, 63, 0.15);
+            border-color: rgba(244, 208, 63, 0.5);
+        }
+
+        .ai-flow-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .ai-flow-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f4d03f;
+            margin-bottom: 8px;
+        }
+
+        .ai-flow-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .ai-flow-arrow {
+            font-size: 2rem;
+            color: #f4d03f;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-dot active" onclick="goToSlide(0)"></div>
+        <div class="nav-dot" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+        <div class="nav-dot" onclick="goToSlide(3)"></div>
+        <div class="nav-dot" onclick="goToSlide(4)"></div>
+        <div class="nav-dot" onclick="goToSlide(5)"></div>
+        <div class="nav-dot" onclick="goToSlide(6)"></div>
+        <div class="nav-dot" onclick="goToSlide(7)"></div>
+        <div class="nav-dot" onclick="goToSlide(8)"></div>
+        <div class="nav-dot" onclick="goToSlide(9)"></div>
+        <div class="nav-dot" onclick="goToSlide(10)"></div>
+        <div class="nav-dot" onclick="goToSlide(11)"></div>
+        <div class="nav-dot" onclick="goToSlide(12)"></div>
+        <div class="nav-dot" onclick="goToSlide(13)"></div>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide" id="slide-0">
+        <div class="slide-counter">1 / 14</div>
+        <h1 class="payi-logo payi-logo-xl" style="color: white;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></h1>
+        <div class="brand-line"></div>
+        <p class="tagline">Daily Pay for Your People. Daily Runs for Your Payables.</p>
+        <div class="subtitle">
+            AI-powered AP &amp; payroll automation with same-day settlement
+        </div>
+    </div>
+
+    <!-- Slide 2: The AP & Payroll Crisis -->
+    <div class="slide" id="slide-1">
+        <div class="slide-counter">2 / 14</div>
+        <h2>The AP &amp; Payroll Crisis</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 30px;">SMBs are drowning in manual payment processes while enterprise solutions remain out of reach</p>
+        
+        <div style="display: flex; gap: 40px; max-width: 1350px; margin-top: 20px;">
+            <!-- Box 1: The Payroll Problem -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 30px; border-top: 5px solid #f4d03f;">
+                <h3 style="color: #f4d03f; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">💼 The Payroll Bottleneck</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 20px;">Mixed workforces create payment chaos</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">$9.7T</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Annual US payroll</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">82%</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Want daily pay access</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">14 days</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Avg W2 pay cycle</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">42+ days</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Contractor payment delay</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(244, 208, 63, 0.15); border-radius: 12px; padding: 15px; border-left: 4px solid #f4d03f;">
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        <strong style="color: #f4d03f;">The pain:</strong> Workers want daily pay, but SMBs are stuck on rigid weekly/biweekly cycles. Outdated payroll hurts retention and contractor relationships.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 2: The AP Nightmare -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 30px; border-top: 5px solid #e74c3c;">
+                <h3 style="color: #e74c3c; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">📄 The AP Nightmare</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 20px;">Invoice processing is stuck in the past</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">$15</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Cost per manual invoice</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">25 days</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Avg processing time</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">3.6%</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Invoice error rate</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">62%</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Still use manual AP</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(231, 76, 60, 0.15); border-radius: 12px; padding: 15px; border-left: 4px solid #e74c3c;">
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        <strong style="color: #e74c3c;">The cost:</strong> SMBs lose $22K/year on manual AP. Email approvals, spreadsheet tracking, and missed early-pay discounts drain cash flow.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; max-width: 1100px; text-align: center;">
+            <div style="background: rgba(244, 208, 63, 0.1); border: 1px solid rgba(244, 208, 63, 0.3); border-radius: 15px; padding: 20px 30px;">
+                <div style="font-size: 1.3rem; color: #f4d03f; font-weight: 600;">
+                    <span class="payi-logo" style="color: #f4d03f;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></span> automates AP and unifies workforce payments — one platform for invoices, contractors, and payroll
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Cost of Manual AP -->
+    <div class="slide" id="slide-2">
+        <div class="slide-counter">3 / 14</div>
+        <h2>The Cost of Manual Processes</h2>
+        
+        <div style="display: flex; gap: 40px; max-width: 1300px; margin-top: 30px;">
+            <!-- Today's Way -->
+            <div style="flex: 1; background: rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 30px; border-left: 5px solid #e74c3c;">
+                <h3 style="color: #e74c3c; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">❌ Manual AP &amp; Payroll</h3>
+                <div style="font-size: 1rem; line-height: 1.8;">
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📅</span>
+                        <strong>Rigid pay cycles:</strong> Weekly, biweekly, monthly — workers wait
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📧</span>
+                        <strong>Email chaos:</strong> Invoices buried in inboxes, lost attachments
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📊</span>
+                        <strong>Spreadsheet hell:</strong> Manual tracking, version conflicts, errors
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">⏰</span>
+                        <strong>Approval delays:</strong> Chasing signatures, bottlenecks at every step
+                    </div>
+                    <div style="padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">🔀</span>
+                        <strong>Siloed systems:</strong> Separate tools for W2, 1099, and vendors
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pay.i Way -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 30px; border-left: 5px solid #27ae60;">
+                <h3 style="color: #27ae60; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">✓ The <span class="payi-logo" style="color: #27ae60;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></span> Way</h3>
+                <div style="font-size: 1rem; line-height: 1.8;">
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">⚡</span>
+                        <strong>Daily pay:</strong> W2 earned wage access, instant contractor payments
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">🤖</span>
+                        <strong>AI ingestion:</strong> Auto-extract invoice data, match to POs
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📱</span>
+                        <strong>One-tap approvals:</strong> Mobile-first, real-time notifications
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">💰</span>
+                        <strong>Daily AP runs:</strong> Process payables daily, not monthly batches
+                    </div>
+                    <div style="padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">🔗</span>
+                        <strong>Unified platform:</strong> Vendors, contractors, W2 — one system
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 30px; margin-top: 40px; max-width: 1100px;">
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">80%</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Reduction in processing time</div>
+            </div>
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">$3</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Cost per invoice (vs $15)</div>
+            </div>
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">Daily</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Settlement vs 3-5 day ACH</div>
+            </div>
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">0</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Duplicate payments</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Platform Demo - ANIMATED -->
+    <div class="slide" id="slide-3">
+        <div class="slide-counter">4 / 14</div>
+        <h2>The <span class="payi-logo" style="color: white;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></span> Platform</h2>
+        <p style="color: #f4d03f; margin-bottom: 20px; font-size: 1rem;">Daily runs. Same-day settlement. One unified view.</p>
+        
+        <div style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; max-width: 1400px; margin: 10px auto;">
+            
+            <!-- Screen 1: AP Automation Queue -->
+            <div style="text-align: center;">
+                <div class="demo-phone" id="demo-phone1" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: #f4d03f; font-size: 1.1rem; margin: 0;">Payables</h3>
+                                <div style="background: rgba(244, 208, 63, 0.2); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; color: #f4d03f;">⚡ Daily Run</div>
+                            </div>
+                            
+                            <div class="demo-item invoice-item pending" id="demo-invoice1">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 0.85rem;">📄 AWS Services</div>
+                                    <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Auto-matched to PO #4521</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 700; font-size: 0.9rem;">$2,847</div>
+                                    <div id="demo-status1" style="font-size: 0.6rem; color: #f39c12;">Pending</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-item invoice-item pending" id="demo-invoice2">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 0.85rem;">📄 Office Supplies Co</div>
+                                    <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">2% early-pay available</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 700; font-size: 0.9rem;">$1,250</div>
+                                    <div style="font-size: 0.6rem; color: #f39c12;">Pending</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-item invoice-item approved" id="demo-invoice3">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 0.85rem;">📄 Contractor - Sarah M.</div>
+                                    <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Milestone: Design Phase</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 700; font-size: 0.9rem;">$4,500</div>
+                                    <div style="font-size: 0.6rem; color: #27ae60;">Approved ✓</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-total" id="demo-total" style="background: rgba(244, 208, 63, 0.15); border-radius: 12px; padding: 12px; margin-top: 15px; text-align: center;">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Ready to Process</div>
+                                <div style="font-size: 1.5rem; font-weight: 800; color: #f4d03f;">$8,597</div>
+                            </div>
+                            
+                            <button class="demo-button" id="demo-approveAll" style="width: 100%; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(39, 174, 96, 0.5); border-radius: 12px; padding: 12px; font-size: 0.9rem; font-weight: 700; color: white; margin-top: 12px; cursor: pointer;">
+                                ⚡ Run Today's Batch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: Contractor Dashboard -->
+            <div style="text-align: center;">
+                <div class="demo-phone dimmed" id="demo-phone2" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: #f4d03f; font-size: 1.1rem; margin: 0;">People</h3>
+                                <div style="background: rgba(39, 174, 96, 0.2); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; color: #27ae60;">⚡ Instant Pay</div>
+                            </div>
+                            
+                            <div class="demo-balance-card" id="demo-contractorCard" style="background: linear-gradient(135deg, rgba(244, 208, 63, 0.2), rgba(22, 160, 133, 0.2)); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid rgba(244, 208, 63, 0.3);">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">This Month's Contractor Spend</div>
+                                <div id="demo-contractorSpend" style="font-size: 1.8rem; font-weight: 800; color: white;">$34,200</div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.65rem; color: rgba(255,255,255,0.6);">
+                                    <span>Paid: $28,700</span>
+                                    <span>Pending: $5,500</span>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.7);">Active Contracts</div>
+                            
+                            <div style="background: rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #3498db, #9b59b6); display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">SM</div>
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">Sarah M.</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Design • Milestone 2/4</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60;">$4,500</div>
+                            </div>
+                            
+                            <div style="background: rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #e74c3c, #f39c12); display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">JK</div>
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">James K.</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Dev • Weekly retainer</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; font-weight: 700; color: #f39c12;">$2,500/wk</div>
+                            </div>
+                            
+                            <div class="demo-badge" id="demo-complianceBadge" style="text-align: center; margin-top: 15px;">
+                                <div style="background: rgba(22, 160, 133, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.65rem; color: #16a085; display: inline-block;">✓ All 1099s generated • W-9s on file</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 3: Payroll / Daily Pay -->
+            <div style="text-align: center;">
+                <div class="demo-phone dimmed" id="demo-phone3" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: #f4d03f; font-size: 1.1rem; margin: 0;">Payroll</h3>
+                                <div style="background: rgba(52, 152, 219, 0.2); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; color: #3498db;">⚡ Daily Pay On</div>
+                            </div>
+                            
+                            <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2)); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid rgba(52, 152, 219, 0.3);">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">December Payroll</div>
+                                <div style="font-size: 1.8rem; font-weight: 800; color: white;">$127,450</div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.65rem; color: rgba(255,255,255,0.6);">
+                                    <span>23 employees</span>
+                                    <span>Taxes: $31,862</span>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.7);">Daily Pay Requests</div>
+                            
+                            <div style="background: rgba(39, 174, 96, 0.15); border-radius: 10px; padding: 10px; margin-bottom: 8px; border-left: 3px solid #27ae60;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">Mike R. requested</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Earned: $1,240 available</div>
+                                    </div>
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #27ae60;">$500</div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(39, 174, 96, 0.15); border-radius: 10px; padding: 10px; margin-bottom: 12px; border-left: 3px solid #27ae60;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">Lisa T. requested</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Earned: $980 available</div>
+                                    </div>
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #27ae60;">$300</div>
+                                </div>
+                            </div>
+                            
+                            <button class="demo-confirm-button" id="demo-runPayroll" style="width: 100%; background: linear-gradient(135deg, #3498db, #9b59b6); border: none; border-radius: 12px; padding: 15px; font-size: 1rem; font-weight: 700; color: white; cursor: pointer; position: relative; overflow: hidden;">
+                                <span class="progress-bar"></span>
+                                <span class="btn-text">Run Payroll</span>
+                                <span class="checkmark">✓ Payroll Complete!</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="runPlatformAnimation()" class="replay-btn">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 5: AI-Powered AP Automation -->
+    <div class="slide" id="slide-4">
+        <div class="slide-counter">5 / 14</div>
+        <h2>AI-Powered Automation</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 20px;">From contract creation to payment in hours — AI handles the heavy lifting</p>
+        
+        <div class="ai-flow-container">
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">📝</div>
+                <div class="ai-flow-title">AI Contracts</div>
+                <div class="ai-flow-desc">Auto-generate W2 or 1099 contracts based on role &amp; history</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step active">
+                <div class="ai-flow-icon">🤖</div>
+                <div class="ai-flow-title">Smart Capture</div>
+                <div class="ai-flow-desc">Invoices ingested, data extracted, POs matched</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">🛡️</div>
+                <div class="ai-flow-title">Fraud &amp; Compliance</div>
+                <div class="ai-flow-desc">Anomaly detection, bank verification, audit trail</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">📊</div>
+                <div class="ai-flow-title">Tax Mapping</div>
+                <div class="ai-flow-desc">Auto W-9 collection, 1099 generation, withholding</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">💸</div>
+                <div class="ai-flow-title">Daily Settlement</div>
+                <div class="ai-flow-desc">Same-day payments, optimal rail selection</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 25px; max-width: 1200px; margin-top: 50px;">
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">📝</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">AI Contract Generation</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Auto-create W2 or 1099 contracts based on worker type, role, and your past agreements. Learn from your templates.</p>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🧠</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">Invoice Intelligence</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">98% extraction accuracy. Learns your vendors, catches duplicates, flags anomalies before payment.</p>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">📊</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">Tax &amp; Compliance</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Automatic W-9 collection, 1099-NEC generation, tax withholding calculations. Year-end ready.</p>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🔀</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">Multi-Rail Routing</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">ACH, same-day ACH, wire, or crypto. Best rail selected per payment automatically.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Why Pay.i is Different -->
+    <div class="slide" id="slide-5">
+        <div class="slide-counter">6 / 14</div>
+        
+        <h2>Why <span class="payi-logo" style="color: white;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></span> is Different</h2>
+        <p class="subtitle" style="margin-top: 10px; margin-bottom: 30px;">Purpose-built for SMBs scaling to enterprise</p>
+
+        <div class="diff-container">
+            <div class="diff-card" id="diff-card-1">
+                <span class="diff-icon">🎯</span>
+                <div class="diff-title">Unified AP + Payroll</div>
+                <div class="diff-desc">One platform for vendors, contractors, and employees</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">1</div>
+                    <div class="diff-stat-label">System for All Payments</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-2">
+                <span class="diff-icon">📝</span>
+                <div class="diff-title">AI Contract Engine</div>
+                <div class="diff-desc">Auto-generate W2 or 1099 contracts from templates or past agreements</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">90%</div>
+                    <div class="diff-stat-label">Faster Contract Creation</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-3">
+                <span class="diff-icon">🔀</span>
+                <div class="diff-title">Multi-Rail Intelligence</div>
+                <div class="diff-desc">ACH, wire, same-day, crypto — optimal routing per payment</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value" id="diff-counter-3">60%</div>
+                    <div class="diff-stat-label">Cost Reduction</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-4">
+                <span class="diff-icon">⚡</span>
+                <div class="diff-title">The Daily Pay Era</div>
+                <div class="diff-desc">W2 earned wage access, instant contractor pay, daily AP batching</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">Daily</div>
+                    <div class="diff-stat-label">Not Weekly/Biweekly</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-5">
+                <span class="diff-icon">📊</span>
+                <div class="diff-title">Built-in Tax Mapping</div>
+                <div class="diff-desc">Auto W-9 collection, 1099-NEC generation, withholding calculations</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">100%</div>
+                    <div class="diff-stat-label">Year-End Compliance</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="replay-btn" onclick="runDiffAnimation()">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 7: Two-Sided Platform -->
+    <div class="slide" id="slide-6">
+        <div class="slide-counter">7 / 14</div>
+        <h2>Two-Sided Platform</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 30px;">Enterprise AP meets consumer fintech — one platform, two experiences</p>
+        
+        <div style="display: flex; gap: 40px; max-width: 1300px; align-items: stretch;">
+            <!-- Employer Side -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.1); border: 2px solid rgba(244, 208, 63, 0.3); border-radius: 24px; padding: 30px; position: relative;">
+                <div style="position: absolute; top: -15px; left: 30px; background: #f4d03f; color: #1a1a1a; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">EMPLOYER DASHBOARD</div>
+                
+                <div style="text-align: center; margin: 20px 0 25px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🏢</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: white;">Business Command Center</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">AI-powered AP, payroll, and spend management</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">📄</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">AP Automation</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">AI invoice processing</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">👥</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Contractors</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">AI contracts & payments</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">💰</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Payroll</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">W2 + daily pay</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">💳</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Corp Cards</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Coming Phase 2</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(244, 208, 63, 0.15); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: #f4d03f; font-weight: 600;">RAMP-STYLE POWER + AI/BLOCKCHAIN RAILS</div>
+                </div>
+            </div>
+
+            <!-- Connection -->
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px;">
+                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f4d03f, #16a085); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">⚡</div>
+                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-align: center; max-width: 80px;">Shared Rails<br>Instant Settlement</div>
+            </div>
+
+            <!-- Employee Side -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.1); border: 2px solid rgba(39, 174, 96, 0.3); border-radius: 24px; padding: 30px; position: relative;">
+                <div style="position: absolute; top: -15px; left: 30px; background: #27ae60; color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">EMPLOYEE APP</div>
+                
+                <div style="text-align: center; margin: 20px 0 25px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">📱</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: white;">Personal Finance Hub</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">Earnings, wallet, payments — all in one</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">⚡</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Daily Pay</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Access earned wages</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">👛</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Wallet</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Balances & history</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">🔄</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">P2P Payments</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Pay coworkers & more</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">💳</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Pay.i Card</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Coming Phase 3</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(39, 174, 96, 0.15); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: #27ae60; font-weight: 600;">VENMO/ZELLE GROWTH PATH</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Growth Flywheel -->
+        <div style="margin-top: 40px; max-width: 1100px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">1.</span> Employer signs up
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">2.</span> Employees get app
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">3.</span> Use daily pay
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">4.</span> P2P with coworkers
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem; border: 1px solid rgba(39, 174, 96, 0.4);">
+                    <span style="color: #27ae60;">5.</span> Invite anyone → Consumer fintech
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Employee App Demo - ANIMATED -->
+    <div class="slide" id="slide-7a">
+        <div class="slide-counter">8 / 14</div>
+        <h2>The Employee Experience</h2>
+        <p style="color: #27ae60; margin-bottom: 20px; font-size: 1rem;">W2 wages + contract gigs. Daily pay. Auto-budgeting.</p>
+        
+        <div style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; max-width: 1400px; margin: 10px auto;">
+            
+            <!-- Screen 1: Home/Wallet -->
+            <div style="text-align: center;">
+                <div class="ee-demo-phone" id="ee-demo-phone1" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div>
+                                    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5);">Welcome back</div>
+                                    <div style="font-size: 1.1rem; font-weight: 700; color: white;">Mike R.</div>
+                                </div>
+                                <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #3498db, #2980b9); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">MR</div>
+                            </div>
+                            
+                            <div id="ee-balance-card" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.2)); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid rgba(39, 174, 96, 0.3); text-align: center;">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Total Available</div>
+                                <div id="ee-total-balance" style="font-size: 2rem; font-weight: 800; color: white;">$3,247</div>
+                                <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.65rem;">
+                                    <div><span style="color: #3498db;">$1,120</span><br><span style="color: rgba(255,255,255,0.5);">W2</span></div>
+                                    <div><span style="color: #27ae60;">$1,400</span><br><span style="color: rgba(255,255,255,0.5);">Contracts</span></div>
+                                    <div><span style="color: #9b59b6;">$727</span><br><span style="color: rgba(255,255,255,0.5);">Wallet</span></div>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Income Sources</div>
+                            
+                            <div style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="font-size: 1rem;">💼</div>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Acme Corp (W2)</div>
+                                            <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">64 hrs • $28/hr</div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: #3498db;">$1,120</div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="font-size: 1rem;">📝</div>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Side Gigs (1099)</div>
+                                            <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">2 active contracts</div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60;">$1,400</div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 8px;">
+                                <button id="ee-get-paid-btn" style="flex: 1; background: linear-gradient(135deg, #27ae60, #16a085); border: none; border-radius: 10px; padding: 12px 8px; color: white; font-weight: 700; font-size: 0.75rem; cursor: pointer;">⚡ Get Paid</button>
+                                <button style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 12px 8px; color: white; font-weight: 600; font-size: 0.75rem;">📦 Bundles</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Home / Wallet</div>
+            </div>
+
+            <!-- Screen 2: Get Paid -->
+            <div style="text-align: center;">
+                <div class="ee-demo-phone ee-dimmed" id="ee-demo-phone2" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 2rem; margin-bottom: 5px;">⚡</div>
+                                <div style="font-size: 1.1rem; font-weight: 700; color: white;">Get Paid Now</div>
+                            </div>
+                            
+                            <div id="ee-available-card" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.2)); border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid rgba(39, 174, 96, 0.3); text-align: center;">
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Available to Access</div>
+                                <div id="ee-available-amount" style="font-size: 1.6rem; font-weight: 800; color: white;">$2,520</div>
+                                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 6px; font-size: 0.6rem; color: rgba(255,255,255,0.5);">
+                                    <span>W2: $1,120</span>
+                                    <span>Contracts: $1,400</span>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Select Amount</div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px;">
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$100</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$250</div>
+                                <div id="ee-selected-amount" style="background: rgba(39, 174, 96, 0.3); border: 1px solid #27ae60; border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem; font-weight: 700; color: #27ae60;">$500</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$1,000</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$1,500</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">Max</div>
+                            </div>
+                            
+                            <div id="ee-bundle-toggle" style="background: rgba(155, 89, 182, 0.15); border: 1px solid rgba(155, 89, 182, 0.3); border-radius: 10px; padding: 10px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1rem;">📦</span>
+                                        <div>
+                                            <div style="font-size: 0.7rem; font-weight: 600; color: white;">Auto-Bundle Active</div>
+                                            <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">$85 → Rent, Phone, Savings</div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 36px; height: 20px; background: #9b59b6; border-radius: 10px; position: relative;">
+                                        <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 0.65rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span style="color: rgba(255,255,255,0.5);">To Bundles</span><span style="color: #9b59b6;">-$85</span></div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span style="color: rgba(255,255,255,0.5);">You receive</span><span style="color: #27ae60; font-weight: 600;">$415</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: rgba(255,255,255,0.5);">Fee</span><span style="color: #27ae60;">$0</span></div>
+                            </div>
+                            
+                            <button id="ee-confirm-btn" style="width: 100%; background: linear-gradient(135deg, #27ae60, #16a085); border: none; border-radius: 10px; padding: 14px; color: white; font-weight: 700; font-size: 0.9rem; cursor: pointer;">
+                                ⚡ Get $500 Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Get Paid</div>
+            </div>
+
+            <!-- Screen 3: Bundles -->
+            <div style="text-align: center;">
+                <div class="ee-demo-phone ee-dimmed" id="ee-demo-phone3" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: white;">📦 Bundles</div>
+                                <div style="background: rgba(155, 89, 182, 0.2); padding: 4px 10px; border-radius: 10px; font-size: 0.65rem; color: #9b59b6;">$85/day</div>
+                            </div>
+                            
+                            <div id="ee-bundles-total" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(142, 68, 173, 0.2)); border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid rgba(155, 89, 182, 0.3); text-align: center;">
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Total Bundled</div>
+                                <div id="ee-bundled-amount" style="font-size: 1.6rem; font-weight: 800; color: white;">$1,297</div>
+                                <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Auto-saved from earnings</div>
+                            </div>
+                            
+                            <!-- Rent Bundle -->
+                            <div id="ee-bundle-rent" style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1.2rem;">🏠</span>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Rent</div>
+                                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">Due Jan 1 • $50/day</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60;">$892</div>
+                                        <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">of $1,400</div>
+                                    </div>
+                                </div>
+                                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div id="ee-rent-progress" style="width: 64%; height: 100%; background: linear-gradient(90deg, #27ae60, #16a085); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phone Bundle -->
+                            <div id="ee-bundle-phone" style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1.2rem;">📱</span>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Phone Bill</div>
+                                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">Due Dec 28 • $5/day</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #3498db;">$65</div>
+                                        <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">of $85</div>
+                                    </div>
+                                </div>
+                                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div id="ee-phone-progress" style="width: 76%; height: 100%; background: linear-gradient(90deg, #3498db, #2980b9); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Savings Bundle -->
+                            <div id="ee-bundle-savings" style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1.2rem;">💰</span>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Emergency Fund</div>
+                                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">No due date • $30/day</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #f4d03f;">$340</div>
+                                        <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">of $1,000</div>
+                                    </div>
+                                </div>
+                                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div id="ee-savings-progress" style="width: 34%; height: 100%; background: linear-gradient(90deg, #f4d03f, #f39c12); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            
+                            <div id="ee-bundle-success" style="display: none; background: rgba(39, 174, 96, 0.2); border: 1px solid rgba(39, 174, 96, 0.4); border-radius: 10px; padding: 12px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 5px;">✓</div>
+                                <div style="font-size: 0.8rem; font-weight: 600; color: #27ae60;">+$85 Added!</div>
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Auto-bundled from daily pay</div>
+                            </div>
+                            
+                            <button style="width: 100%; background: rgba(155, 89, 182, 0.2); border: 1px solid rgba(155, 89, 182, 0.4); border-radius: 10px; padding: 12px; color: #9b59b6; font-weight: 600; font-size: 0.8rem; cursor: pointer;">
+                                + Create New Bundle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Bundles</div>
+            </div>
+        </div>
+
+        <button onclick="runEmployeeAnimation()" class="replay-btn">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 9: Technology Stack -->
+    <div class="slide" id="slide-7">
+        <div class="slide-counter">9 / 14</div>
+        <h2><span class="payi-logo" style="color: white;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></span> Architecture</h2>
+        <div class="subtitle" style="margin-top: 0; margin-bottom: 30px;">AI-powered decisions, blockchain-settled payments, traditional rails when needed</div>
+        
+        <div style="display: flex; gap: 20px; max-width: 1300px;">
+            <!-- AI Layer -->
+            <div style="flex: 1; background: rgba(155, 89, 182, 0.15); border: 1px solid rgba(155, 89, 182, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">🧠</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #9b59b6;">AI/ML LAYER</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Document Intelligence</strong><br>GPT-4 Vision for invoice OCR, data extraction, PO matching</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Contract Generation</strong><br>Fine-tuned LLM generates W2/1099 agreements from templates + history</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Fraud Detection</strong><br>Custom ML for anomaly detection, duplicate invoices, bank verification</div>
+                    <div><strong style="color: white;">Payment Optimization</strong><br>ML routing: cost, speed, early-pay discounts</div>
+                </div>
+            </div>
+
+            <!-- Blockchain Layer -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.15); border: 1px solid rgba(244, 208, 63, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">⛓️</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #f4d03f;">BLOCKCHAIN LAYER</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Network</strong><br>Base (Coinbase L2) — low fees, instant finality, enterprise-grade</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Settlement</strong><br>USDC stablecoin for 24/7 instant settlement, no float</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Payment Triggers</strong><br>Solidity contracts for milestone escrow, auto-release on approval</div>
+                    <div><strong style="color: white;">Audit Trail</strong><br>Immutable on-chain record of approvals, signatures, payments</div>
+                </div>
+            </div>
+
+            <!-- Payment Rails -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.15); border: 1px solid rgba(39, 174, 96, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">💸</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #27ae60;">PAYMENT RAILS</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Traditional</strong><br>Modern Treasury — ACH, same-day ACH, wire for fiat payments</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Crypto On/Off Ramp</strong><br>Coinbase Prime — USDC ↔ USD conversion, custody</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Intelligent Routing</strong><br>AI selects optimal rail per payment: speed vs cost vs recipient preference</div>
+                    <div><strong style="color: white;">Daily Batching</strong><br>Aggregate payments, optimize timing, maximize early-pay discounts</div>
+                </div>
+            </div>
+
+            <!-- Compliance Layer -->
+            <div style="flex: 1; background: rgba(52, 152, 219, 0.15); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">🔐</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #3498db;">COMPLIANCE LAYER</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Identity</strong><br>Persona for KYC/KYB, Plaid for bank verification</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Payroll Engine</strong><br>Check — W2 processing, tax filing, state compliance</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Tax Mapping</strong><br>Auto W-9 collection, 1099-NEC generation, withholding calc</div>
+                    <div><strong style="color: white;">Security</strong><br>SOC 2 Type II, end-to-end encryption, role-based access</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow Diagram -->
+        <div style="margin-top: 30px; max-width: 1100px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                <div style="background: rgba(155, 89, 182, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #9b59b6;">AI</span> extracts & validates
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(244, 208, 63, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #f4d03f;">Smart contract</span> holds escrow
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #27ae60;">USDC or ACH</span> settles instantly
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(52, 152, 219, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #3498db;">1099</span> auto-generated
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Core Architecture - ANIMATED -->
+    <div class="slide" id="slide-8">
+        <div class="slide-counter">10 / 14</div>
+        
+        <h2 style="font-size: 2.8rem; margin-bottom: 10px;"><span class="payi-logo" style="color: white;">Pay<span class="arrow"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></span><span class="i-letter">i</span></span> Payment Flow</h2>
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 35px; text-align: center;">AI-powered routing across traditional and blockchain rails</p>
+
+        <div class="infra-compact-container">
+            <!-- Left: Core Infrastructure Stack -->
+            <div class="infra-infrastructure-section">
+                <div class="infra-section-title">⚡ System Architecture</div>
+                <div class="infra-architecture-stack">
+                    <div class="infra-arch-layer" id="infra-layer-frontend">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">📱</span>
+                            <span class="infra-layer-name">Frontend</span>
+                        </div>
+                        <div class="infra-layer-tech">React Native • Next.js • Dashboard</div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet1"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-api">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">🧠</span>
+                            <span class="infra-layer-name">AI Layer</span>
+                        </div>
+                        <div class="infra-layer-tech">GPT-4 Vision • Custom ML • Fraud Detection</div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet2"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-services">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">⚙️</span>
+                            <span class="infra-layer-name">Core Services</span>
+                        </div>
+                        <div class="infra-services-grid">
+                            <div class="infra-service-box" id="infra-svc-ap"><div class="infra-service-icon">📄</div>AP Engine</div>
+                            <div class="infra-service-box" id="infra-svc-router"><div class="infra-service-icon">🔀</div>Router</div>
+                            <div class="infra-service-box" id="infra-svc-ledger"><div class="infra-service-icon">📒</div>Ledger</div>
+                            <div class="infra-service-box" id="infra-svc-payroll"><div class="infra-service-icon">💼</div>Payroll</div>
+                        </div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet3"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-data">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">⛓️</span>
+                            <span class="infra-layer-name">Blockchain</span>
+                        </div>
+                        <div class="infra-layer-tech">Base L2 • USDC • Solidity Escrow</div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet4"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-external">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">🌐</span>
+                            <span class="infra-layer-name">External APIs</span>
+                        </div>
+                        <div class="infra-layer-tech">Modern Treasury • Coinbase Prime • Check • Plaid</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Batch Payment Flow -->
+            <div class="infra-batch-section">
+                <div class="infra-section-title">🔄 Payment Routing</div>
+                <div class="infra-batch-flow">
+                    <div class="infra-batch-node infra-payment-request" id="infra-node-request">
+                        <div class="infra-node-title">📥 Payment Request</div>
+                        <div class="infra-request-example" id="infra-request-text">"Pay $4,500 to contractor"</div>
+                    </div>
+                    <div class="infra-v-connector"><div class="infra-v-line"><div class="infra-v-arrow"></div></div></div>
+                    <div class="infra-batch-node" id="infra-node-split">
+                        <div class="infra-node-title">🧠 AI Classification</div>
+                        <div class="infra-node-subtitle">Type, urgency, recipient prefs</div>
+                    </div>
+                    <div class="infra-v-connector"><div class="infra-v-line"><div class="infra-v-arrow"></div></div></div>
+                    <div class="infra-batch-node" id="infra-node-router">
+                        <div class="infra-node-title">⛓️ Escrow (if milestone)</div>
+                        <div class="infra-node-subtitle">Smart contract holds until approved</div>
+                    </div>
+                    <div class="infra-branch-connector">
+                        <svg class="infra-branch-svg" viewBox="0 0 360 35" preserveAspectRatio="none">
+                            <path class="infra-branch-path animated ach" id="infra-path-ach" d="M180,0 Q180,20 55,35" />
+                            <path class="infra-branch-path animated crypto" id="infra-path-crypto" d="M180,0 L180,35" />
+                            <path class="infra-branch-path animated wire" id="infra-path-wire" d="M180,0 Q180,20 305,35" />
+                        </svg>
+                    </div>
+                    <div class="infra-rails-container">
+                        <div class="infra-rail">
+                            <div class="infra-rail-box ach" id="infra-rail-ach">
+                                <div class="infra-rail-icon">🏦</div>
+                                <div class="infra-rail-name ach">ACH</div>
+                                <div class="infra-rail-provider">Modern Treasury</div>
+                            </div>
+                        </div>
+                        <div class="infra-rail">
+                            <div class="infra-rail-box crypto" id="infra-rail-crypto">
+                                <div class="infra-rail-icon">⚡</div>
+                                <div class="infra-rail-name crypto">USDC</div>
+                                <div class="infra-rail-provider">Base L2 • Instant</div>
+                            </div>
+                        </div>
+                        <div class="infra-rail">
+                            <div class="infra-rail-box wire" id="infra-rail-wire">
+                                <div class="infra-rail-icon">🌐</div>
+                                <div class="infra-rail-name wire">Wire</div>
+                                <div class="infra-rail-provider">International</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infra-key-components">
+                        <div class="infra-component-tag"><span class="infra-tag-icon">📊</span>1099 Auto-Generated</div>
+                        <div class="infra-component-tag"><span class="infra-tag-icon">📒</span>On-Chain Audit Trail</div>
+                        <div class="infra-component-tag"><span class="infra-tag-icon">🔑</span>Idempotency</div>
+                        <div class="infra-component-tag"><span class="infra-tag-icon">🪝</span>Webhooks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="replay-btn" onclick="runInfraAnimation()">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 10: Go-to-Market: SMB to Enterprise -->
+    <div class="slide" id="slide-9">
+        <div class="slide-counter">11 / 14</div>
+        <h2>Go-to-Market Strategy</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 25px;">AP is the wedge → Employers onboard employees for free → P2P unlocks at scale</p>
+        
+        <!-- Flywheel Visualization -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px 30px; margin-bottom: 25px; max-width: 1100px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.8rem;">
+                <div style="background: rgba(244,208,63,0.2); color: #f4d03f; padding: 10px 12px; border-radius: 10px; font-weight: 600;">🏢 Sell AP</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(52,152,219,0.2); color: #3498db; padding: 10px 12px; border-radius: 10px; font-weight: 600;">👥 Employer Onboards</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(155,89,182,0.2); color: #9b59b6; padding: 10px 12px; border-radius: 10px; font-weight: 600;">💳 Wallet + Coworker P2P</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(39,174,96,0.2); color: #27ae60; padding: 10px 12px; border-radius: 10px; font-weight: 600;">⚡ Full P2P (Y2)</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(244,208,63,0.2); color: #f4d03f; padding: 10px 12px; border-radius: 10px; font-weight: 600;">↻ Viral Growth</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 25px; max-width: 1300px;">
+            <!-- Year 1: AP Wedge -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.1); border: 2px solid rgba(244, 208, 63, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #f4d03f; color: #1a1a1a; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 1 • AP WEDGE</div>
+                <h3 style="color: #f4d03f; font-size: 1.3rem; margin-bottom: 12px;">Enterprise AP + Employee Wallets</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Sell AP automation to employers; they onboard employees at zero CAC to us</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        AI invoice processing & matching
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Vendor & contractor payments
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Employee daily pay + digital wallet
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Coworker P2P payments
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Pay.i Card (interchange from Day 1)
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>300 SMB • 15 MM • 3 Ent • 8K cards</span>
+                    <span style="color: #f4d03f; font-weight: 700;">$2.5M ARR</span>
+                </div>
+            </div>
+
+            <!-- Year 2: Full P2P -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.1); border: 2px solid rgba(39, 174, 96, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #27ae60; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 2 • FULL P2P</div>
+                <h3 style="color: #27ae60; font-size: 1.3rem; margin-bottom: 12px;">Mainstream P2P Adoption</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Open P2P beyond coworkers — external sends, viral growth</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        Send to anyone (not just coworkers)
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        Bill splitting & payment requests
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        USDC yield on bundles
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        Mid-market AP expansion
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>700 SMB • 100 MM • 35 Ent • 35K cards</span>
+                    <span style="color: #27ae60; font-weight: 700;">$12M ARR</span>
+                </div>
+            </div>
+
+            <!-- Year 3: Enterprise Engine -->
+            <div style="flex: 1; background: rgba(155, 89, 182, 0.1); border: 2px solid rgba(155, 89, 182, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #9b59b6; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 3 • ENTERPRISE ENGINE</div>
+                <h3 style="color: #9b59b6; font-size: 1.3rem; margin-bottom: 12px;">Enterprise = 40% of ARR</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Network effects + enterprise features drive growth</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        Multi-entity / multi-currency
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        Global contractor payments
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        SOC 2 Type II, SSO, audit logs
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        ERP deep integrations
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>1K SMB • 250 MM • 100 Ent • 100K cards</span>
+                    <span style="color: #9b59b6; font-weight: 700;">$32M ARR</span>
+                </div>
+            </div>
+
+            <!-- Year 5: Scale -->
+            <div style="flex: 1; background: rgba(52, 152, 219, 0.1); border: 2px solid rgba(52, 152, 219, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #3498db; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 5 • MARKET LEADER</div>
+                <h3 style="color: #3498db; font-size: 1.3rem; margin-bottom: 12px;">Full-Stack Dominance</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Enterprise = 60% of ARR, 5 revenue streams</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        400 enterprise customers
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        350K employees on cards
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        $15K avg enterprise ARPU
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        Consumer network effects
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>1.5K SMB • 650 MM • 400 Ent • 350K cards</span>
+                    <span style="color: #3498db; font-weight: 700;">$100M ARR</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Use Cases -->
+    <div class="slide" id="slide-10">
+        <div class="slide-counter">12 / 14</div>
+        <h2>Real-World Impact</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 40px;">How Pay.i solves critical payment challenges</p>
+        
+        <div style="display: flex; gap: 40px; max-width: 1300px;">
+            <!-- Use Case 1: Nonprofit -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px; border-top: 5px solid #e74c3c;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #e74c3c, #c0392b); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">🏛️</div>
+                    <div>
+                        <div style="font-size: 1.3rem; font-weight: 700; color: #e74c3c;">Regional Healthcare Nonprofit</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">3,500 payments/month • 45 staff • 200+ contractors</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(231, 76, 60, 0.15); border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #e74c3c; margin-bottom: 8px;">⚠️ THE PROBLEM</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        Suffered <strong>$47K in fraudulent contractor payments</strong> after email compromise. Manual AP process couldn't detect fake invoice submissions. No verification layer for new contractor bank details.
+                    </div>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.15); border-radius: 12px; padding: 15px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60; margin-bottom: 8px;">✓ PAY.I SOLUTION</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                        • AI flags anomalous invoices &amp; new bank details<br>
+                        • Daily payment runs with same-day settlement<br>
+                        • Contractor identity verification via Persona<br>
+                        • Complete audit trail for every change
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">$0</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Fraud losses since</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">Daily</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Payment runs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Case 2: Design Firm -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px; border-top: 5px solid #9b59b6;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #9b59b6, #8e44ad); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">🎨</div>
+                    <div>
+                        <div style="font-size: 1.3rem; font-weight: 700; color: #9b59b6;">Boutique Interior Design Studio</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">8 employees • 25 contractors • $2M annual projects</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(155, 89, 182, 0.15); border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #9b59b6; margin-bottom: 8px;">⚠️ THE PROBLEM</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        Founder spending <strong>15+ hours/week on AP and contractor admin</strong>. Proposals and contracts drafted manually in Word. Missed project milestones meant delayed payments and frustrated contractors.
+                    </div>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.15); border-radius: 12px; padding: 15px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60; margin-bottom: 8px;">✓ PAY.I SOLUTION</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                        • AI generates proposals &amp; contracts from briefs<br>
+                        • Instant contractor payments — no more 30-day waits<br>
+                        • Daily AP runs for vendor invoices<br>
+                        • One dashboard for all payments
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">15 hrs</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">→ 2 hrs/week</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">Same-Day</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Contractor payments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Proforma -->
+    <div class="slide" id="slide-11">
+        <div class="slide-counter">13 / 14</div>
+        <h2>Financial Projections</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 30px;">Path to $100M ARR by Year 5</p>
+        
+        <div style="max-width: 1200px; width: 100%;">
+            <!-- Revenue Table -->
+            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; margin-bottom: 30px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid rgba(244, 208, 63, 0.5);">
+                            <th style="text-align: left; padding: 12px 15px; color: #f4d03f;">Metric</th>
+                            <th style="text-align: center; padding: 12px 15px; color: rgba(255,255,255,0.6);">Year 1</th>
+                            <th style="text-align: center; padding: 12px 15px; color: rgba(255,255,255,0.6);">Year 2</th>
+                            <th style="text-align: center; padding: 12px 15px; color: rgba(255,255,255,0.6);">Year 3</th>
+                            <th style="text-align: center; padding: 12px 15px; color: rgba(255,255,255,0.6);">Year 4</th>
+                            <th style="text-align: center; padding: 12px 15px; color: #f4d03f;">Year 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">SMB Customers</td>
+                            <td style="text-align: center; padding: 15px;">300</td>
+                            <td style="text-align: center; padding: 15px;">700</td>
+                            <td style="text-align: center; padding: 15px;">1,000</td>
+                            <td style="text-align: center; padding: 15px;">1,300</td>
+                            <td style="text-align: center; padding: 15px; color: #f4d03f; font-weight: 700;">1,500</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">Mid-Market Customers</td>
+                            <td style="text-align: center; padding: 15px;">15</td>
+                            <td style="text-align: center; padding: 15px;">100</td>
+                            <td style="text-align: center; padding: 15px;">250</td>
+                            <td style="text-align: center; padding: 15px;">450</td>
+                            <td style="text-align: center; padding: 15px; color: #f4d03f; font-weight: 700;">650</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">Enterprise Customers</td>
+                            <td style="text-align: center; padding: 15px;">3</td>
+                            <td style="text-align: center; padding: 15px;">35</td>
+                            <td style="text-align: center; padding: 15px;">100</td>
+                            <td style="text-align: center; padding: 15px;">225</td>
+                            <td style="text-align: center; padding: 15px; color: #f4d03f; font-weight: 700;">400</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">Employees on Pay.i Cards</td>
+                            <td style="text-align: center; padding: 15px;">8K</td>
+                            <td style="text-align: center; padding: 15px;">35K</td>
+                            <td style="text-align: center; padding: 15px;">100K</td>
+                            <td style="text-align: center; padding: 15px;">200K</td>
+                            <td style="text-align: center; padding: 15px; color: #f4d03f; font-weight: 700;">350K</td>
+                        </tr>
+                        <tr style="background: rgba(244, 208, 63, 0.1);">
+                            <td style="padding: 15px; font-weight: 700; color: #f4d03f;">ARR</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$2.5M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$12M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$32M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$65M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700; color: #27ae60; font-size: 1.1rem;">$100M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Revenue Breakdown & Unit Economics -->
+            <div style="display: flex; gap: 30px;">
+                <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px;">
+                    <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 18px; text-align: center;">💰 Revenue Streams (Y5)</h3>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">SaaS Platform (AP + Payroll)</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">45%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #f4d03f, #f39c12); width: 45%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">💳 Card Interchange</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">20%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #9b59b6, #8e44ad); width: 20%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">AP Payment Processing</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">15%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #3498db, #2980b9); width: 15%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">⚡ Daily Pay / EWA Fees</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">10%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #27ae60, #16a085); width: 10%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">🔵 USDC Yield Spread</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">10%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #1abc9c, #16a085); width: 10%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px;">
+                    <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 18px; text-align: center;">📊 Unit Economics (Y3+)</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 12px; text-align: center;">
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #27ae60;">$1,500</div>
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">CAC (Blended)</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 12px; text-align: center;">
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #27ae60;">$45,000</div>
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">LTV (3-yr)</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 12px; text-align: center;">
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #27ae60;">30:1</div>
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">LTV:CAC Ratio</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 12px; text-align: center;">
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #27ae60;">115%</div>
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Net Revenue Retention</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px;">
+                    <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 18px; text-align: center;">🎯 Key Assumptions</h3>
+                    <div style="font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.85);">
+                        <div style="margin-bottom: 6px;">• SMB ARPU: $400/mo</div>
+                        <div style="margin-bottom: 6px;">• Mid-Market ARPU: $2,500/mo</div>
+                        <div style="margin-bottom: 6px;">• Enterprise ARPU: $15,000/mo</div>
+                        <div style="margin-bottom: 6px;">• Card spend: $2K/mo per employee</div>
+                        <div style="margin-bottom: 6px;">• Interchange: 1.75% avg</div>
+                        <div>• Churn: 5% → 2% by Y3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Funding Ask & Close -->
+    <div class="slide" id="slide-12">
+        <div class="slide-counter">14 / 14</div>
+        <h1 style="font-size: 3.5rem; margin-bottom: 30px;">Automate AP. Unify Payroll. Scale with AI.</h1>
+        <div class="brand-line"></div>
+        
+        <div style="margin-top: 50px; max-width: 1000px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: #f4d03f;">Raising $4M Seed Round</h2>
+            
+            <div class="stat-grid" style="margin-top: 40px; grid-template-columns: repeat(3, 1fr);">
+                <div class="stat-box">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">AI/ML &amp; Core Platform</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">Team Expansion</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">20%</div>
+                    <div class="stat-label">Sales &amp; GTM</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px; text-align: center;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #f4d03f;">18-Month Milestones</h3>
+                <p style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9;">500 SMB customers • $2M ARR • Series A ready</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.2);">
+            <p style="font-size: 1.4rem; margin-bottom: 15px; font-weight: 600;">Matthew Finkle, Founder</p>
+            <p style="font-size: 1.2rem; color: #f4d03f; margin-bottom: 30px;">matt@pay-i.com</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        function goToSlide(index) {
+            if (navDots[currentSlide]) navDots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            if (navDots[currentSlide]) navDots[currentSlide].classList.add('active');
+            if (slides[index]) slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                if (currentSlide < slides.length - 1) {
+                    goToSlide(currentSlide + 1);
+                }
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentSlide > 0) {
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const slideIndex = Array.from(slides).indexOf(entry.target);
+                    if (slideIndex !== currentSlide && slideIndex >= 0) {
+                        if (navDots[currentSlide]) navDots[currentSlide].classList.remove('active');
+                        currentSlide = slideIndex;
+                        if (navDots[currentSlide]) navDots[currentSlide].classList.add('active');
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        slides.forEach((slide) => {
+            observer.observe(slide);
+        });
+
+        // Utility functions
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // ===== SLIDE 4: PLATFORM DEMO ANIMATION =====
+        async function runPlatformAnimation() {
+            const phone1 = document.getElementById('demo-phone1');
+            const phone2 = document.getElementById('demo-phone2');
+            const phone3 = document.getElementById('demo-phone3');
+            const invoice1 = document.getElementById('demo-invoice1');
+            const invoice2 = document.getElementById('demo-invoice2');
+            const invoice3 = document.getElementById('demo-invoice3');
+            const total = document.getElementById('demo-total');
+            const approveBtn = document.getElementById('demo-approveAll');
+            const contractorCard = document.getElementById('demo-contractorCard');
+            const complianceBadge = document.getElementById('demo-complianceBadge');
+            const runPayroll = document.getElementById('demo-runPayroll');
+
+            if (!phone1 || !phone2 || !phone3) return;
+
+            // Reset states
+            phone1.classList.remove('dimmed');
+            phone2.classList.add('dimmed');
+            phone3.classList.add('dimmed');
+            [invoice1, invoice2, invoice3].forEach(el => el.classList.remove('animate-in'));
+            total.classList.remove('animate-in');
+            complianceBadge.classList.remove('animate-in');
+            approveBtn.classList.remove('clicked');
+            contractorCard.classList.remove('glow');
+            runPayroll.classList.remove('processing', 'complete');
+            document.getElementById('demo-status1').textContent = 'Pending';
+            document.getElementById('demo-status1').style.color = '#f39c12';
+
+            // Animation sequence
+            await sleep(500);
+            invoice1.classList.add('animate-in');
+            await sleep(400);
+            invoice2.classList.add('animate-in');
+            await sleep(400);
+            invoice3.classList.add('animate-in');
+            await sleep(500);
+            total.classList.add('animate-in');
+            await sleep(600);
+            approveBtn.classList.add('clicked');
+            document.getElementById('demo-status1').textContent = 'Approved ✓';
+            document.getElementById('demo-status1').style.color = '#27ae60';
+            
+            await sleep(800);
+            phone2.classList.remove('dimmed');
+            contractorCard.classList.add('glow');
+            await sleep(600);
+            complianceBadge.classList.add('animate-in');
+            
+            await sleep(800);
+            phone3.classList.remove('dimmed');
+            await sleep(500);
+            runPayroll.classList.add('processing');
+            await sleep(1500);
+            runPayroll.classList.add('complete');
+            
+            await sleep(500);
+            phone1.classList.add('dimmed');
+            phone2.classList.add('dimmed');
+        }
+
+        // ===== SLIDE 8: EMPLOYEE APP ANIMATION =====
+        async function runEmployeeAnimation() {
+            const phone1 = document.getElementById('ee-demo-phone1');
+            const phone2 = document.getElementById('ee-demo-phone2');
+            const phone3 = document.getElementById('ee-demo-phone3');
+            
+            if (!phone1 || !phone2 || !phone3) return;
+
+            // Reset states
+            phone1.classList.remove('ee-dimmed', 'ee-active');
+            phone2.classList.add('ee-dimmed');
+            phone2.classList.remove('ee-active');
+            phone3.classList.add('ee-dimmed');
+            phone3.classList.remove('ee-active');
+            
+            const bundleSuccess = document.getElementById('ee-bundle-success');
+            if (bundleSuccess) bundleSuccess.style.display = 'none';
+            
+            // Reset progress bars
+            const rentProgress = document.getElementById('ee-rent-progress');
+            const phoneProgress = document.getElementById('ee-phone-progress');
+            const savingsProgress = document.getElementById('ee-savings-progress');
+            if (rentProgress) rentProgress.style.width = '64%';
+            if (phoneProgress) phoneProgress.style.width = '76%';
+            if (savingsProgress) savingsProgress.style.width = '34%';
+
+            // Animation sequence
+            await sleep(500);
+            
+            // Phone 1: Highlight wallet balance
+            phone1.classList.add('ee-active');
+            const balanceCard = document.getElementById('ee-balance-card');
+            if (balanceCard) balanceCard.classList.add('ee-highlight');
+            
+            await sleep(1200);
+            
+            // Transition to Phone 2: Get Paid
+            phone1.classList.remove('ee-active');
+            phone1.classList.add('ee-dimmed');
+            phone2.classList.remove('ee-dimmed');
+            phone2.classList.add('ee-active');
+            
+            await sleep(800);
+            
+            // Highlight selected amount
+            const selectedAmount = document.getElementById('ee-selected-amount');
+            if (selectedAmount) selectedAmount.classList.add('ee-highlight');
+            
+            await sleep(600);
+            
+            // Highlight bundle toggle
+            const bundleToggle = document.getElementById('ee-bundle-toggle');
+            if (bundleToggle) bundleToggle.classList.add('ee-highlight');
+            
+            await sleep(800);
+            
+            // Click confirm button effect
+            const confirmBtn = document.getElementById('ee-confirm-btn');
+            if (confirmBtn) {
+                confirmBtn.style.transform = 'scale(0.95)';
+                await sleep(150);
+                confirmBtn.style.transform = 'scale(1)';
+                confirmBtn.innerHTML = '✓ Sent!';
+                confirmBtn.style.background = '#27ae60';
+            }
+            
+            await sleep(1000);
+            
+            // Transition to Phone 3: Bundles
+            phone2.classList.remove('ee-active');
+            phone2.classList.add('ee-dimmed');
+            phone3.classList.remove('ee-dimmed');
+            phone3.classList.add('ee-active');
+            
+            await sleep(600);
+            
+            // Animate bundle progress bars filling up
+            if (rentProgress) rentProgress.style.width = '68%';
+            if (phoneProgress) phoneProgress.style.width = '82%';
+            if (savingsProgress) savingsProgress.style.width = '37%';
+            
+            await sleep(800);
+            
+            // Show success message
+            if (bundleSuccess) {
+                bundleSuccess.style.display = 'block';
+                bundleSuccess.classList.add('ee-highlight');
+            }
+            
+            await sleep(1500);
+            
+            // Reset confirm button for replay
+            if (confirmBtn) {
+                confirmBtn.innerHTML = '⚡ Get $500 Now';
+                confirmBtn.style.background = 'linear-gradient(135deg, #27ae60, #16a085)';
+            }
+            
+            // Final state - keep bundles highlighted
+            phone3.classList.remove('ee-active');
+        }
+
+        // ===== SLIDE 6: DIFFERENTIATORS ANIMATION =====
+        let diffAnimationRunning = false;
+
+        async function runDiffAnimation() {
+            if (diffAnimationRunning) return;
+            diffAnimationRunning = true;
+            resetDiffAnimation();
+            await sleep(300);
+
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`diff-card-${i}`).classList.add('visible');
+                await sleep(300);
+            }
+
+            diffAnimationRunning = false;
+        }
+
+        function resetDiffAnimation() {
+            for (let i = 1; i <= 5; i++) {
+                const card = document.getElementById(`diff-card-${i}`);
+                if (card) card.classList.remove('visible');
+            }
+        }
+
+        // ===== SLIDE 8: INFRASTRUCTURE ANIMATION =====
+        let infraAnimationRunning = false;
+
+        async function runInfraAnimation() {
+            if (infraAnimationRunning) return;
+            infraAnimationRunning = true;
+            resetInfraAnimation();
+            await sleep(300);
+
+            const layers = ['infra-layer-frontend', 'infra-layer-api', 'infra-layer-services', 'infra-layer-data', 'infra-layer-external'];
+            const packets = ['infra-packet1', 'infra-packet2', 'infra-packet3', 'infra-packet4'];
+
+            packets.forEach((id, i) => {
+                const packet = document.getElementById(id);
+                if (packet) {
+                    packet.style.animationDelay = `${i * 0.3}s`;
+                    packet.classList.add('animate-down');
+                }
+            });
+
+            for (let i = 0; i < layers.length; i++) {
+                await sleep(350);
+                document.getElementById(layers[i]).classList.add('active');
+            }
+
+            await sleep(250);
+            const services = ['infra-svc-ap', 'infra-svc-router', 'infra-svc-ledger', 'infra-svc-payroll'];
+            for (const svc of services) {
+                document.getElementById(svc).classList.add('active');
+                await sleep(120);
+            }
+
+            await sleep(400);
+            document.getElementById('infra-node-request').classList.add('active');
+            await sleep(500);
+            document.getElementById('infra-node-split').classList.add('active', 'processing');
+            await sleep(700);
+            document.getElementById('infra-node-split').classList.remove('processing');
+            document.getElementById('infra-node-router').classList.add('active', 'processing');
+            await sleep(500);
+            document.getElementById('infra-node-router').classList.remove('processing');
+
+            document.getElementById('infra-path-ach').classList.add('animate');
+            document.getElementById('infra-path-crypto').classList.add('animate');
+            document.getElementById('infra-path-wire').classList.add('animate');
+            await sleep(350);
+
+            document.getElementById('infra-rail-ach').classList.add('active');
+            await sleep(150);
+            document.getElementById('infra-rail-crypto').classList.add('active');
+            await sleep(150);
+            document.getElementById('infra-rail-wire').classList.add('active');
+
+            await sleep(400);
+            const requestText = document.getElementById('infra-request-text');
+            requestText.innerHTML = '✓ 28 ACH • 12 Same-Day • 7 Wire';
+            requestText.style.color = '#27ae60';
+
+            infraAnimationRunning = false;
+        }
+
+        function resetInfraAnimation() {
+            document.querySelectorAll('#slide-8 .infra-arch-layer').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#slide-8 .infra-service-box').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#slide-8 .infra-data-packet').forEach(el => {
+                el.classList.remove('animate-down');
+                el.style.animationDelay = '0s';
+            });
+            document.querySelectorAll('#slide-8 .infra-batch-node').forEach(el => el.classList.remove('active', 'processing'));
+            document.querySelectorAll('#slide-8 .infra-branch-path').forEach(el => el.classList.remove('animate'));
+            document.querySelectorAll('#slide-8 .infra-rail-box').forEach(el => el.classList.remove('active'));
+            const requestText = document.getElementById('infra-request-text');
+            if (requestText) {
+                requestText.innerHTML = '"Process 47 payments"';
+                requestText.style.color = 'rgba(255,255,255,0.7)';
+            }
+        }
+
+        // Intersection observers for auto-play
+        const platformObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) runPlatformAnimation();
+            });
+        }, { threshold: 0.5 });
+
+        const diffSlideObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) runDiffAnimation();
+            });
+        }, { threshold: 0.5 });
+
+        const infraSlideObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) runInfraAnimation();
+            });
+        }, { threshold: 0.5 });
+
+        const employeeSlideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) runEmployeeAnimation(); });
+        }, { threshold: 0.5 });
+
+        const platformSlide = document.getElementById('slide-3');
+        const employeeSlide = document.getElementById('slide-7a');
+        const diffSlide = document.getElementById('slide-5');
+        const infraSlide = document.getElementById('slide-8');
+
+        if (platformSlide) platformObserver.observe(platformSlide);
+        if (employeeSlide) employeeSlideObserver.observe(employeeSlide);
+        if (diffSlide) diffSlideObserver.observe(diffSlide);
+        if (infraSlide) infraSlideObserver.observe(infraSlide);
+    </script>
+</body>
+</html>
