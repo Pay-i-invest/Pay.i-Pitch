@@ -1,0 +1,3184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paier - AP Automation for Employers. Daily Pay for Employees.</title>
+    
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Paier">
+    <meta property="og:description" content="AP Automation for Employers. Daily Pay for Employees.">
+    <meta property="og:image" content="paier-og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paier">
+    <meta name="twitter:description" content="AP Automation for Employers. Daily Pay for Employees.">
+    <meta name="twitter:image" content="paier-og-image.png">
+    
+    <!-- General Meta -->
+    <meta name="description" content="AI-powered AP & payroll automation with same-day settlement">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #2d4a6f 0%, #1e3a5f 100%);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            position: relative;
+            scroll-snap-align: start;
+            page-break-after: always;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #2d4a6f 0%, #1e3a5f 100%);
+        }
+        
+        .slide.blue {
+            background: linear-gradient(135deg, #2d4a6f 0%, #1e3a5f 100%);
+        }
+        
+        .slide.teal {
+            background: linear-gradient(135deg, #1a3a4a 0%, #0f2a38 100%);
+        }
+
+        .slide h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .slide h2 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #f4d03f;
+        }
+
+        .tagline {
+            font-size: 2.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-top: 25px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .brand-line {
+            width: 320px;
+            height: 6px;
+            background: linear-gradient(90deg, #f39c12, #16a085);
+            margin: 25px auto;
+            border-radius: 3px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            min-height: 180px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #f4d03f;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 220px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: #f4d03f;
+            line-height: 1;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 20px;
+            color: #f4d03f;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .navigation {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            margin: 12px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #f4d03f;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(244, 208, 63, 0.6);
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 1rem;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        .highlight {
+            color: #f4d03f;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 25px;
+                min-height: 100vh;
+            }
+            .slide h1 { 
+                font-size: 2.8rem; 
+                margin-bottom: 25px;
+            }
+            .slide h2 { 
+                font-size: 2rem; 
+                margin-bottom: 35px;
+            }
+            .stat-grid, .feature-grid { 
+                grid-template-columns: 1fr; 
+                gap: 25px;
+                margin-top: 30px;
+            }
+        }
+
+        /* ===== PAIER LOGO STYLES ===== */
+        .paier-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+        .paier-logo-mark {
+            width: 120px;
+            height: 120px;
+            min-width: 120px;
+            min-height: 120px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 25px rgba(244, 208, 63, 0.4));
+        }
+        .paier-wordmark {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            color: white;
+            text-shadow: 
+                0 0 40px rgba(244, 208, 63, 0.5),
+                0 0 80px rgba(244, 208, 63, 0.3);
+        }
+        /* Inline Paier for use in text */
+        .paier-inline {
+            font-weight: 700;
+        }
+        .paier-inline .i-accent {
+            color: #f4d03f;
+        }
+
+        /* ===== CIRCUIT PULSE LOGO ANIMATION (Slide 14) ===== */
+        .circuit-logo-container {
+            position: relative;
+        }
+        .circuit-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(244, 208, 63, 0.15) 0%, rgba(244, 208, 63, 0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: circuitGlowIn 0.6s ease-out 3s forwards;
+        }
+        @keyframes circuitGlowIn {
+            to { opacity: 1; }
+        }
+        .circuit-base-path {
+            opacity: 0.15;
+        }
+        .circuit-box-outline {
+            stroke-dasharray: 320;
+            stroke-dashoffset: 320;
+            animation: circuitDrawBox 1.2s ease-in-out 0.2s forwards;
+            filter: drop-shadow(0 0 3px rgba(244, 208, 63, 0.4));
+        }
+        @keyframes circuitDrawBox {
+            to { stroke-dashoffset: 0; }
+        }
+        .circuit-pulse-dot {
+            filter: drop-shadow(0 0 4px #f4d03f);
+        }
+        .circuit-pulse-1 {
+            offset-path: path('M 12,22 Q 12,12 22,12 L 78,12 Q 88,12 88,22 L 88,78 Q 88,88 78,88 L 22,88 Q 12,88 12,78 Z');
+            animation: circuitMovePulse1 1.2s ease-in-out 0.2s forwards;
+            opacity: 0;
+        }
+        @keyframes circuitMovePulse1 {
+            0% { offset-distance: 0%; opacity: 1; }
+            90% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 0; }
+        }
+        .circuit-p-vertical {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: circuitDrawLine 0.4s ease-out 1.5s forwards;
+        }
+        .circuit-pulse-2 {
+            offset-path: path('M 32,74 L 32,24');
+            animation: circuitMovePulse2 0.4s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+        @keyframes circuitMovePulse2 {
+            0% { offset-distance: 0%; opacity: 1; }
+            90% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 0; }
+        }
+        .circuit-p-curve {
+            stroke-dasharray: 85;
+            stroke-dashoffset: 85;
+            animation: circuitDrawCurve 0.5s ease-out 1.9s forwards;
+        }
+        @keyframes circuitDrawCurve {
+            to { stroke-dashoffset: 0; }
+        }
+        .circuit-pulse-3 {
+            offset-path: path('M 32,24 L 55,24 Q 70,24 70,40 Q 70,54 55,54 L 44,54');
+            animation: circuitMovePulse3 0.5s ease-out 1.9s forwards;
+            opacity: 0;
+        }
+        @keyframes circuitMovePulse3 {
+            0% { offset-distance: 0%; opacity: 1; }
+            90% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 0; }
+        }
+        .circuit-p-descender {
+            stroke-dasharray: 20;
+            stroke-dashoffset: 20;
+            animation: circuitDrawLine 0.3s ease-out 2.4s forwards;
+        }
+        @keyframes circuitDrawLine {
+            to { stroke-dashoffset: 0; }
+        }
+        .circuit-pulse-4 {
+            offset-path: path('M 44,54 L 44,74');
+            animation: circuitMovePulse4 0.3s ease-out 2.4s forwards;
+            opacity: 0;
+        }
+        @keyframes circuitMovePulse4 {
+            0% { offset-distance: 0%; opacity: 1; }
+            90% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 0; }
+        }
+        .circuit-circle-left, .circuit-circle-right {
+            opacity: 0;
+            transform-origin: center;
+        }
+        .circuit-circle-left {
+            animation: circuitPulseIn 0.4s ease-out 1.4s forwards;
+        }
+        .circuit-circle-right {
+            animation: circuitPulseIn 0.4s ease-out 2.7s forwards;
+        }
+        @keyframes circuitPulseIn {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .circuit-logo-svg {
+            animation: circuitFinalGlow 0.5s ease-out 3s forwards;
+        }
+        @keyframes circuitFinalGlow {
+            to {
+                filter: drop-shadow(0 0 4px rgba(244, 208, 63, 0.2));
+            }
+        }
+
+        /* ===== SLIDE 4: PLATFORM DEMO ANIMATION STYLES ===== */
+        .demo-phone {
+            transition: opacity 0.5s ease, filter 0.5s ease;
+        }
+        .demo-phone.dimmed {
+            opacity: 0.4;
+            filter: brightness(0.6);
+        }
+        
+        /* Employee Demo Styles */
+        .ee-demo-phone {
+            transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+        }
+        .ee-demo-phone.ee-dimmed {
+            opacity: 0.4;
+            filter: brightness(0.6);
+        }
+        .ee-demo-phone.ee-active {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(39, 174, 96, 0.3) !important;
+        }
+        .ee-highlight {
+            animation: eeGlow 0.6s ease-out;
+        }
+        @keyframes eeGlow {
+            0% { box-shadow: 0 0 0 rgba(39, 174, 96, 0); }
+            50% { box-shadow: 0 0 20px rgba(39, 174, 96, 0.5); }
+            100% { box-shadow: 0 0 0 rgba(39, 174, 96, 0); }
+        }
+        .ee-bundle-fill {
+            transition: width 0.8s ease-out;
+        }
+        
+        .demo-item {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        .demo-item.animate-in {
+            animation: slideInLeft 0.5s ease-out forwards;
+        }
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .demo-total {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .demo-total.animate-in {
+            animation: scaleIn 0.4s ease-out forwards;
+        }
+        @keyframes scaleIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+        .demo-badge {
+            opacity: 0;
+        }
+        .demo-badge.animate-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .demo-balance-card {
+            transition: all 0.5s ease;
+        }
+        .demo-balance-card.glow {
+            border-color: rgba(244, 208, 63, 0.6) !important;
+            box-shadow: 0 0 30px rgba(244, 208, 63, 0.3);
+        }
+        .demo-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            background: rgba(244, 208, 63, 0.2) !important;
+            border-color: #f4d03f !important;
+        }
+        .demo-button.clicked {
+            background: linear-gradient(135deg, #f4d03f, #16a085) !important;
+            border-color: #f4d03f !important;
+            color: #1a1a1a !important;
+            box-shadow: 0 0 20px rgba(244, 208, 63, 0.5);
+        }
+        .demo-confirm-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .demo-confirm-button .progress-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(39, 174, 96, 0.5);
+            border-radius: 12px;
+            z-index: 1;
+        }
+        .demo-confirm-button.processing .progress-bar {
+            animation: progressFill 1.5s ease-out forwards;
+        }
+        @keyframes progressFill {
+            to { width: 100%; }
+        }
+        .demo-confirm-button .btn-text {
+            position: relative;
+            z-index: 2;
+        }
+        .demo-confirm-button.complete {
+            background: #27ae60 !important;
+        }
+        .demo-confirm-button.complete .btn-text {
+            display: none;
+        }
+        .demo-confirm-button .checkmark {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+        .demo-confirm-button.complete .checkmark {
+            display: inline;
+        }
+
+        /* Invoice Queue Styles */
+        .invoice-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .invoice-item.pending { border-left-color: #f39c12; }
+        .invoice-item.approved { border-left-color: #27ae60; }
+        .invoice-item.processing { border-left-color: #3498db; }
+
+        /* ===== SLIDE 6: DIFFERENTIATORS ===== */
+        .diff-container {
+            display: flex;
+            gap: 25px;
+            max-width: 1400px;
+            margin-top: 30px;
+        }
+
+        .diff-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s ease;
+        }
+
+        .diff-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .diff-card:hover {
+            background: rgba(244, 208, 63, 0.1);
+            border-color: rgba(244, 208, 63, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f4d03f, #16a085);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease 0.3s;
+        }
+
+        .diff-card.visible::before {
+            transform: scaleX(1);
+        }
+
+        .diff-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .diff-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f4d03f;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .diff-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .diff-stat-box {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.2));
+            border: 1px solid rgba(39, 174, 96, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .diff-stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+
+        .diff-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SLIDE 8: INFRASTRUCTURE STYLES ===== */
+        .infra-section-title {
+            font-size: 1.2rem;
+            color: #f4d03f;
+            font-weight: 700;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .infra-architecture-stack {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .infra-arch-layer {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 8px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .infra-arch-layer:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(244, 208, 63, 0.3);
+        }
+
+        .infra-arch-layer.active {
+            background: rgba(244, 208, 63, 0.15);
+            border-color: rgba(244, 208, 63, 0.5);
+            box-shadow: 0 0 20px rgba(244, 208, 63, 0.2);
+        }
+
+        .infra-layer-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .infra-layer-icon {
+            font-size: 1.2rem;
+        }
+
+        .infra-layer-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f4d03f;
+        }
+
+        .infra-layer-tech {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.4;
+        }
+
+        .infra-services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .infra-service-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 6px;
+            text-align: center;
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .infra-service-box.active {
+            background: rgba(22, 160, 133, 0.3);
+            border-color: #16a085;
+            box-shadow: 0 0 15px rgba(22, 160, 133, 0.3);
+        }
+
+        .infra-service-icon {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .infra-connector {
+            position: relative;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .infra-connector-line {
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(244, 208, 63, 0.3), rgba(22, 160, 133, 0.3));
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .infra-data-packet {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #f4d03f;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(244, 208, 63, 0.8);
+        }
+
+        .infra-data-packet.animate-down {
+            animation: infraPacketDown 1.5s ease-in-out infinite;
+        }
+
+        @keyframes infraPacketDown {
+            0% { top: -7px; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { top: calc(100% + 7px); opacity: 0; }
+        }
+
+        .infra-batch-flow {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .infra-batch-node {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .infra-batch-node.active {
+            background: rgba(244, 208, 63, 0.15);
+            border-color: rgba(244, 208, 63, 0.5);
+            box-shadow: 0 0 25px rgba(244, 208, 63, 0.3);
+        }
+
+        .infra-batch-node.processing {
+            animation: infraProcessingPulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes infraProcessingPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(244, 208, 63, 0.2); }
+            50% { box-shadow: 0 0 35px rgba(244, 208, 63, 0.5); }
+        }
+
+        .infra-node-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f4d03f;
+            margin-bottom: 4px;
+        }
+
+        .infra-node-subtitle {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .infra-payment-request {
+            background: linear-gradient(135deg, rgba(244, 208, 63, 0.2), rgba(22, 160, 133, 0.2));
+            border: 2px solid rgba(244, 208, 63, 0.4);
+        }
+
+        .infra-request-example {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .infra-v-connector {
+            display: flex;
+            justify-content: center;
+            height: 28px;
+            position: relative;
+        }
+
+        .infra-v-line {
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(244, 208, 63, 0.4), rgba(22, 160, 133, 0.4));
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .infra-v-arrow {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid rgba(22, 160, 133, 0.6);
+        }
+
+        .infra-rails-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .infra-rail {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .infra-rail-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .infra-rail-box.ach { border-color: rgba(52, 152, 219, 0.3); }
+        .infra-rail-box.crypto { border-color: rgba(155, 89, 182, 0.3); }
+        .infra-rail-box.wire { border-color: rgba(39, 174, 96, 0.3); }
+
+        .infra-rail-box.active.ach { 
+            background: rgba(52, 152, 219, 0.2); 
+            border-color: rgba(52, 152, 219, 0.6);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        }
+        .infra-rail-box.active.crypto { 
+            background: rgba(155, 89, 182, 0.2); 
+            border-color: rgba(155, 89, 182, 0.6);
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+        }
+        .infra-rail-box.active.wire { 
+            background: rgba(39, 174, 96, 0.2); 
+            border-color: rgba(39, 174, 96, 0.6);
+            box-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
+        }
+
+        .infra-rail-icon {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+
+        .infra-rail-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .infra-rail-name.ach { color: #3498db; }
+        .infra-rail-name.crypto { color: #9b59b6; }
+        .infra-rail-name.wire { color: #27ae60; }
+
+        .infra-rail-provider {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .infra-branch-connector {
+            height: 35px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .infra-branch-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .infra-branch-path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 2;
+        }
+
+        .infra-branch-path.animated {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+
+        .infra-branch-path.ach.animate { animation: infraDrawPath 0.6s ease-out forwards; stroke: #3498db; }
+        .infra-branch-path.crypto.animate { animation: infraDrawPath 0.6s ease-out 0.15s forwards; stroke: #9b59b6; }
+        .infra-branch-path.wire.animate { animation: infraDrawPath 0.6s ease-out 0.3s forwards; stroke: #27ae60; }
+
+        @keyframes infraDrawPath {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .infra-key-components {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .infra-component-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            padding: 6px 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .infra-component-tag .infra-tag-icon {
+            font-size: 0.75rem;
+        }
+
+        .infra-compact-container {
+            display: flex;
+            gap: 50px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .infra-infrastructure-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .infra-batch-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .replay-btn {
+            margin-top: 25px;
+            background: transparent;
+            border: 2px solid #f4d03f;
+            color: #f4d03f;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .replay-btn:hover {
+            background: #f4d03f;
+            color: #1a1a1a;
+        }
+
+        @keyframes emailGlow {
+            0%, 100% { box-shadow: 0 0 4px rgba(244, 208, 63, 0.2); }
+            50% { box-shadow: 0 0 6px rgba(244, 208, 63, 0.3); }
+        }
+        .email-btn {
+            animation: emailGlow 2s ease-in-out infinite;
+        }
+        .email-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 8px rgba(244, 208, 63, 0.4) !important;
+        }
+
+        /* AI Flow Diagram Styles */
+        .ai-flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1300px;
+            margin-top: 40px;
+        }
+
+        .ai-flow-step {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            flex: 1;
+            max-width: 220px;
+            transition: all 0.3s ease;
+        }
+
+        .ai-flow-step:hover {
+            background: rgba(244, 208, 63, 0.15);
+            border-color: rgba(244, 208, 63, 0.5);
+        }
+
+        .ai-flow-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .ai-flow-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f4d03f;
+            margin-bottom: 8px;
+        }
+
+        .ai-flow-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .ai-flow-arrow {
+            font-size: 2rem;
+            color: #f4d03f;
+            opacity: 0.6;
+        }
+
+        /* ============ MOBILE RESPONSIVE STYLES ============ */
+        
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px 50px;
+            }
+            
+            .slide h1 {
+                font-size: 3rem;
+            }
+            
+            .slide h2 {
+                font-size: 2.4rem;
+                margin-bottom: 30px;
+            }
+            
+            .slide h3 {
+                font-size: 1.4rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+                min-height: auto;
+                height: auto;
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+            
+            .slide h1 {
+                font-size: 2.2rem;
+                letter-spacing: -1px;
+                margin-bottom: 20px;
+            }
+            
+            .slide h2 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                letter-spacing: 0;
+            }
+            
+            .slide h3 {
+                font-size: 1.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem !important;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+            
+            /* Slide 1 - Title */
+            #slide-0 > div:first-of-type + div {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            
+            #slide-0 svg {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            #slide-0 span[style*="font-size: 5rem"] {
+                font-size: 3rem !important;
+            }
+            
+            /* Navigation dots */
+            .navigation {
+                right: 10px;
+                gap: 6px;
+            }
+            
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+            
+            /* Slide counter */
+            .slide-counter {
+                top: 15px;
+                left: 15px;
+                font-size: 0.7rem;
+            }
+            
+            /* Flex containers - stack vertically */
+            .slide > div[style*="display: flex"][style*="gap"] {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            
+            /* Grid layouts - single column */
+            .slide div[style*="display: grid"] {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+            
+            /* Feature boxes */
+            .slide div[style*="flex: 1"] {
+                flex: none !important;
+                width: 100% !important;
+            }
+            
+            /* Stat boxes */
+            .slide div[style*="font-size: 2rem"],
+            .slide div[style*="font-size: 2.5rem"],
+            .slide div[style*="font-size: 3rem"] {
+                font-size: 1.8rem !important;
+            }
+            
+            /* Reduce large text */
+            .slide div[style*="font-size: 4rem"] {
+                font-size: 2.5rem !important;
+            }
+            
+            .slide div[style*="font-size: 5rem"] {
+                font-size: 3rem !important;
+            }
+            
+            /* AI Flow arrows - hide on mobile */
+            .ai-flow-arrow {
+                display: none;
+            }
+            
+            .ai-flow-container {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+            
+            .ai-flow-step {
+                min-width: auto !important;
+                width: 100% !important;
+            }
+            
+            /* Tables */
+            table {
+                font-size: 0.75rem !important;
+            }
+            
+            th, td {
+                padding: 8px 10px !important;
+            }
+            
+            /* Reduce padding on boxes */
+            .slide div[style*="padding: 30px"] {
+                padding: 20px !important;
+            }
+            
+            .slide div[style*="padding: 40px"] {
+                padding: 20px !important;
+            }
+            
+            /* Max width overrides */
+            .slide div[style*="max-width"] {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            
+            /* Circuit logo on closing slide */
+            .circuit-logo-container {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .paier-wordmark {
+                font-size: 2.5rem !important;
+            }
+            
+            /* Email button */
+            .email-btn {
+                font-size: 0.9rem !important;
+                padding: 10px 20px !important;
+            }
+        }
+        
+        /* Small mobile */
+        @media (max-width: 480px) {
+            .slide {
+                padding: 25px 15px;
+                padding-top: 45px;
+            }
+            
+            .slide h1 {
+                font-size: 1.8rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem !important;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            #slide-0 svg {
+                width: 50px !important;
+                height: 50px !important;
+            }
+            
+            #slide-0 span[style*="font-size: 5rem"] {
+                font-size: 2.2rem !important;
+            }
+            
+            .slide div[style*="font-size: 2rem"],
+            .slide div[style*="font-size: 2.5rem"] {
+                font-size: 1.5rem !important;
+            }
+            
+            .paier-wordmark {
+                font-size: 2rem !important;
+            }
+            
+            /* Hide navigation on very small screens */
+            .navigation {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-dot active" onclick="goToSlide(0)"></div>
+        <div class="nav-dot" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+        <div class="nav-dot" onclick="goToSlide(3)"></div>
+        <div class="nav-dot" onclick="goToSlide(4)"></div>
+        <div class="nav-dot" onclick="goToSlide(5)"></div>
+        <div class="nav-dot" onclick="goToSlide(6)"></div>
+        <div class="nav-dot" onclick="goToSlide(7)"></div>
+        <div class="nav-dot" onclick="goToSlide(8)"></div>
+        <div class="nav-dot" onclick="goToSlide(9)"></div>
+        <div class="nav-dot" onclick="goToSlide(10)"></div>
+        <div class="nav-dot" onclick="goToSlide(11)"></div>
+        <div class="nav-dot" onclick="goToSlide(12)"></div>
+        <div class="nav-dot" onclick="goToSlide(13)"></div>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide teal" id="slide-0">
+        <div class="slide-counter">1 / 14</div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px;">
+            <svg viewBox="0 0 100 100" width="90" height="90">
+                <rect x="12" y="12" width="76" height="76" rx="10" stroke="#f4d03f" stroke-width="3" fill="none"/>
+                <path d="M32,74 L32,24" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" fill="none"/>
+                <path d="M32,24 L55,24 Q70,24 70,40 Q70,54 55,54 L44,54" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M44,54 L44,74" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" fill="none"/>
+                <circle cx="32" cy="74" r="5" fill="#f4d03f"/>
+                <circle cx="44" cy="74" r="5" fill="#f4d03f"/>
+            </svg>
+            <span style="font-size: 5rem; font-weight: 800; letter-spacing: -2px; color: #f4d03f;">Paier</span>
+        </div>
+        <p class="tagline">AP Automation for Employers. Daily Pay for Employees.</p>
+        <div class="subtitle">
+            AI-powered AP &amp; payroll automation with same-day settlement
+        </div>
+    </div>
+
+    <!-- Slide 2: The AP & Payroll Crisis -->
+    <div class="slide blue" id="slide-1">
+        <div class="slide-counter">2 / 14</div>
+        <h2>The AP &amp; Payroll Crisis</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 30px;">SMBs are drowning in manual payment processes while enterprise solutions remain out of reach</p>
+        
+        <div style="display: flex; gap: 40px; max-width: 1350px; margin-top: 20px;">
+            <!-- Box 1: The Payroll Problem -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 30px; border-top: 5px solid #f4d03f;">
+                <h3 style="color: #f4d03f; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">💼 The Payroll Bottleneck</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 20px;">Mixed workforces create payment chaos</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">$9.7T</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Annual US payroll</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">82%</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Want daily pay access</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">14 days</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Avg W2 pay cycle</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f4d03f;">42+ days</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Contractor payment delay</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(244, 208, 63, 0.15); border-radius: 12px; padding: 15px; border-left: 4px solid #f4d03f;">
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        <strong style="color: #f4d03f;">The pain:</strong> Workers want daily pay, but SMBs are stuck on rigid weekly/biweekly cycles. Outdated payroll hurts retention and contractor relationships.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 2: The AP Nightmare -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 30px; border-top: 5px solid #e74c3c;">
+                <h3 style="color: #e74c3c; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">📄 The AP Nightmare</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 20px;">Invoice processing is stuck in the past</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">$15</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Cost per manual invoice</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">25 days</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Avg processing time</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">3.6%</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Invoice error rate</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #e74c3c;">62%</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Still use manual AP</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(231, 76, 60, 0.15); border-radius: 12px; padding: 15px; border-left: 4px solid #e74c3c;">
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        <strong style="color: #e74c3c;">The cost:</strong> SMBs lose $22K/year on manual AP. Email approvals, spreadsheet tracking, and missed early-pay discounts drain cash flow.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; max-width: 1100px; text-align: center;">
+            <div style="background: rgba(244, 208, 63, 0.1); border: 1px solid rgba(244, 208, 63, 0.3); border-radius: 15px; padding: 20px 30px;">
+                <div style="font-size: 1.3rem; color: #f4d03f; font-weight: 600;">
+                    Paier automates AP and unifies workforce payments — one platform for invoices, contractors, and payroll
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: The Cost of Manual AP -->
+    <div class="slide teal" id="slide-2">
+        <div class="slide-counter">3 / 14</div>
+        <h2>The Cost of Manual Processes</h2>
+        
+        <div style="display: flex; gap: 40px; max-width: 1300px; margin-top: 30px;">
+            <!-- Today's Way -->
+            <div style="flex: 1; background: rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 30px; border-left: 5px solid #e74c3c;">
+                <h3 style="color: #e74c3c; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">❌ Manual AP &amp; Payroll</h3>
+                <div style="font-size: 1rem; line-height: 1.8;">
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📅</span>
+                        <strong>Rigid pay cycles:</strong> Weekly, biweekly, monthly — workers wait
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📧</span>
+                        <strong>Email chaos:</strong> Invoices buried in inboxes, lost attachments
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📊</span>
+                        <strong>Spreadsheet hell:</strong> Manual tracking, version conflicts, errors
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">⏰</span>
+                        <strong>Approval delays:</strong> Chasing signatures, bottlenecks at every step
+                    </div>
+                    <div style="padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">🔀</span>
+                        <strong>Siloed systems:</strong> Separate tools for W2, 1099, and vendors
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paier Way -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 30px; border-left: 5px solid #27ae60;">
+                <h3 style="color: #27ae60; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">✓ The Paier Way</h3>
+                <div style="font-size: 1rem; line-height: 1.8;">
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">⚡</span>
+                        <strong>Daily pay:</strong> W2 earned wage access, instant contractor payments
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">🤖</span>
+                        <strong>AI ingestion:</strong> Auto-extract invoice data, match to POs
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">📱</span>
+                        <strong>One-tap approvals:</strong> Mobile-first, real-time notifications
+                    </div>
+                    <div style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">💰</span>
+                        <strong>Daily AP runs:</strong> Process payables daily, not monthly batches
+                    </div>
+                    <div style="padding-left: 25px; position: relative;">
+                        <span style="position: absolute; left: 0;">🔗</span>
+                        <strong>Unified platform:</strong> Vendors, contractors, W2 — one system
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 30px; margin-top: 40px; max-width: 1100px;">
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">80%</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Reduction in processing time</div>
+            </div>
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">$3</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Cost per invoice (vs $15)</div>
+            </div>
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">Daily</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Settlement vs 3-5 day ACH</div>
+            </div>
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.2); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(39, 174, 96, 0.4);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #27ae60;">0</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;">Duplicate payments</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Platform Demo - ANIMATED -->
+    <div class="slide teal" id="slide-3">
+        <div class="slide-counter">4 / 14</div>
+        <h2>The Paier Platform</h2>
+        <p style="color: #f4d03f; margin-bottom: 20px; font-size: 1rem;">Daily runs. Same-day settlement. One unified view.</p>
+        
+        <div style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; max-width: 1400px; margin: 10px auto;">
+            
+            <!-- Screen 1: AP Automation Queue -->
+            <div style="text-align: center;">
+                <div class="demo-phone" id="demo-phone1" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: #f4d03f; font-size: 1.1rem; margin: 0;">Payables</h3>
+                                <div style="background: rgba(244, 208, 63, 0.2); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; color: #f4d03f;">⚡ Daily Run</div>
+                            </div>
+                            
+                            <div class="demo-item invoice-item pending" id="demo-invoice1">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 0.85rem;">📄 AWS Services</div>
+                                    <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Auto-matched to PO #4521</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 700; font-size: 0.9rem;">$2,847</div>
+                                    <div id="demo-status1" style="font-size: 0.6rem; color: #f39c12;">Pending</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-item invoice-item pending" id="demo-invoice2">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 0.85rem;">📄 Office Supplies Co</div>
+                                    <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">2% early-pay available</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 700; font-size: 0.9rem;">$1,250</div>
+                                    <div style="font-size: 0.6rem; color: #f39c12;">Pending</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-item invoice-item approved" id="demo-invoice3">
+                                <div>
+                                    <div style="font-weight: 600; font-size: 0.85rem;">📄 Contractor - Sarah M.</div>
+                                    <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Milestone: Design Phase</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 700; font-size: 0.9rem;">$4,500</div>
+                                    <div style="font-size: 0.6rem; color: #27ae60;">Approved ✓</div>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-total" id="demo-total" style="background: rgba(244, 208, 63, 0.15); border-radius: 12px; padding: 12px; margin-top: 15px; text-align: center;">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Ready to Process</div>
+                                <div style="font-size: 1.5rem; font-weight: 800; color: #f4d03f;">$8,597</div>
+                            </div>
+                            
+                            <button class="demo-button" id="demo-approveAll" style="width: 100%; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(39, 174, 96, 0.5); border-radius: 12px; padding: 12px; font-size: 0.9rem; font-weight: 700; color: white; margin-top: 12px; cursor: pointer;">
+                                ⚡ Run Today's Batch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: Contractor Dashboard -->
+            <div style="text-align: center;">
+                <div class="demo-phone dimmed" id="demo-phone2" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: #f4d03f; font-size: 1.1rem; margin: 0;">People</h3>
+                                <div style="background: rgba(39, 174, 96, 0.2); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; color: #27ae60;">⚡ Instant Pay</div>
+                            </div>
+                            
+                            <div class="demo-balance-card" id="demo-contractorCard" style="background: linear-gradient(135deg, rgba(244, 208, 63, 0.2), rgba(22, 160, 133, 0.2)); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid rgba(244, 208, 63, 0.3);">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">This Month's Contractor Spend</div>
+                                <div id="demo-contractorSpend" style="font-size: 1.8rem; font-weight: 800; color: white;">$34,200</div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.65rem; color: rgba(255,255,255,0.6);">
+                                    <span>Paid: $28,700</span>
+                                    <span>Pending: $5,500</span>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.7);">Active Contracts</div>
+                            
+                            <div style="background: rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #3498db, #9b59b6); display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">SM</div>
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">Sarah M.</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Design • Milestone 2/4</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60;">$4,500</div>
+                            </div>
+                            
+                            <div style="background: rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #e74c3c, #f39c12); display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">JK</div>
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">James K.</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Dev • Weekly retainer</div>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.8rem; font-weight: 700; color: #f39c12;">$2,500/wk</div>
+                            </div>
+                            
+                            <div class="demo-badge" id="demo-complianceBadge" style="text-align: center; margin-top: 15px;">
+                                <div style="background: rgba(22, 160, 133, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.65rem; color: #16a085; display: inline-block;">✓ All 1099s generated • W-9s on file</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 3: Payroll / Daily Pay -->
+            <div style="text-align: center;">
+                <div class="demo-phone dimmed" id="demo-phone3" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h3 style="color: #f4d03f; font-size: 1.1rem; margin: 0;">Payroll</h3>
+                                <div style="background: rgba(52, 152, 219, 0.2); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; color: #3498db;">⚡ Daily Pay On</div>
+                            </div>
+                            
+                            <div style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(155, 89, 182, 0.2)); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid rgba(52, 152, 219, 0.3);">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">December Payroll</div>
+                                <div style="font-size: 1.8rem; font-weight: 800; color: white;">$127,450</div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.65rem; color: rgba(255,255,255,0.6);">
+                                    <span>23 employees</span>
+                                    <span>Taxes: $31,862</span>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.7);">Daily Pay Requests</div>
+                            
+                            <div style="background: rgba(39, 174, 96, 0.15); border-radius: 10px; padding: 10px; margin-bottom: 8px; border-left: 3px solid #27ae60;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">Mike R. requested</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Earned: $1,240 available</div>
+                                    </div>
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #27ae60;">$500</div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(39, 174, 96, 0.15); border-radius: 10px; padding: 10px; margin-bottom: 12px; border-left: 3px solid #27ae60;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <div style="font-weight: 600; font-size: 0.8rem;">Lisa T. requested</div>
+                                        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Earned: $980 available</div>
+                                    </div>
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #27ae60;">$300</div>
+                                </div>
+                            </div>
+                            
+                            <button class="demo-confirm-button" id="demo-runPayroll" style="width: 100%; background: linear-gradient(135deg, #3498db, #9b59b6); border: none; border-radius: 12px; padding: 15px; font-size: 1rem; font-weight: 700; color: white; cursor: pointer; position: relative; overflow: hidden;">
+                                <span class="progress-bar"></span>
+                                <span class="btn-text">Run Payroll</span>
+                                <span class="checkmark">✓ Payroll Complete!</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="runPlatformAnimation()" class="replay-btn">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 5: AI-Powered AP Automation - FIX: removed class="active" from Smart Capture -->
+    <div class="slide blue" id="slide-4">
+        <div class="slide-counter">5 / 14</div>
+        <h2>AI-Powered Automation</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 20px;">From contract creation to payment in minutes — AI handles the heavy lifting</p>
+        
+        <div class="ai-flow-container">
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">📝</div>
+                <div class="ai-flow-title">AI Contracts</div>
+                <div class="ai-flow-desc">Auto-generate W2 or 1099 contracts based on role &amp; history</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">🤖</div>
+                <div class="ai-flow-title">Smart Capture</div>
+                <div class="ai-flow-desc">Invoices ingested, data extracted, POs matched</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">🛡️</div>
+                <div class="ai-flow-title">Fraud &amp; Compliance</div>
+                <div class="ai-flow-desc">Anomaly detection, bank verification, audit trail</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">📊</div>
+                <div class="ai-flow-title">Tax Mapping</div>
+                <div class="ai-flow-desc">Auto W-9 collection, 1099 generation, withholding</div>
+            </div>
+            <div class="ai-flow-arrow">→</div>
+            <div class="ai-flow-step">
+                <div class="ai-flow-icon">💸</div>
+                <div class="ai-flow-title">Daily Settlement</div>
+                <div class="ai-flow-desc">Same-day payments, optimal rail selection</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 25px; max-width: 1200px; margin-top: 50px;">
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">📝</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">AI Contract Generation</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Auto-create W2 or 1099 contracts based on worker type, role, and your past agreements. Learn from your templates.</p>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🧠</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">Invoice Intelligence</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">98% extraction accuracy. Learns your vendors, catches duplicates, flags anomalies before payment.</p>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">📊</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">Tax &amp; Compliance</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">Automatic W-9 collection, 1099-NEC generation, tax withholding calculations. Year-end ready.</p>
+            </div>
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🔀</div>
+                <h3 style="color: #f4d03f; font-size: 1.2rem; margin-bottom: 10px;">Multi-Rail Routing</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">ACH, same-day ACH, wire, or crypto. Best rail selected per payment automatically.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Why Paier is Different -->
+    <div class="slide teal" id="slide-5">
+        <div class="slide-counter">6 / 14</div>
+        
+        <h2>Why Paier is Different</h2>
+        <p class="subtitle" style="margin-top: 10px; margin-bottom: 30px;">Purpose-built for SMBs scaling to enterprise</p>
+
+        <div class="diff-container">
+            <div class="diff-card" id="diff-card-1">
+                <span class="diff-icon">🎯</span>
+                <div class="diff-title">Unified AP + Payroll</div>
+                <div class="diff-desc">One platform for vendors, contractors, and employees</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">1</div>
+                    <div class="diff-stat-label">System for All Payments</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-2">
+                <span class="diff-icon">📝</span>
+                <div class="diff-title">AI Contract Engine</div>
+                <div class="diff-desc">Auto-generate W2 or 1099 contracts from templates or past agreements</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">90%</div>
+                    <div class="diff-stat-label">Faster Contract Creation</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-3">
+                <span class="diff-icon">🔀</span>
+                <div class="diff-title">Multi-Rail Intelligence</div>
+                <div class="diff-desc">ACH, wire, same-day, crypto — optimal routing per payment</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value" id="diff-counter-3">60%</div>
+                    <div class="diff-stat-label">Cost Reduction</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-4">
+                <span class="diff-icon">⚡</span>
+                <div class="diff-title">The Daily Pay Era</div>
+                <div class="diff-desc">W2 earned wage access, instant contractor pay, daily AP batching</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">Daily</div>
+                    <div class="diff-stat-label">Not Weekly/Biweekly</div>
+                </div>
+            </div>
+            <div class="diff-card" id="diff-card-5">
+                <span class="diff-icon">📊</span>
+                <div class="diff-title">Built-in Tax Mapping</div>
+                <div class="diff-desc">Auto W-9 collection, 1099-NEC generation, withholding calculations</div>
+                <div class="diff-stat-box">
+                    <div class="diff-stat-value">100%</div>
+                    <div class="diff-stat-label">Year-End Compliance</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="replay-btn" onclick="runDiffAnimation()">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 7: Two-Sided Platform -->
+    <div class="slide teal" id="slide-6">
+        <div class="slide-counter">7 / 14</div>
+        <h2>Two-Sided Platform</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 30px;">Enterprise AP meets consumer fintech — one platform, two experiences</p>
+        
+        <div style="display: flex; gap: 40px; max-width: 1300px; align-items: stretch;">
+            <!-- Employer Side -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.1); border: 2px solid rgba(244, 208, 63, 0.3); border-radius: 24px; padding: 30px; position: relative;">
+                <div style="position: absolute; top: -15px; left: 30px; background: #f4d03f; color: #1a1a1a; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">EMPLOYER DASHBOARD</div>
+                
+                <div style="text-align: center; margin: 20px 0 25px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🏢</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: white;">Business Command Center</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">AI-powered AP, payroll, and spend management</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">📄</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">AP Automation</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">AI invoice processing</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">👥</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Contractors</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">AI contracts & payments</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">💰</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Payroll</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">W2 + daily pay</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">💳</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Corp Cards</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Coming Phase 2</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(244, 208, 63, 0.15); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: #f4d03f; font-weight: 600;">RAMP-STYLE POWER + AI/BLOCKCHAIN RAILS</div>
+                </div>
+            </div>
+
+            <!-- Connection -->
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px;">
+                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f4d03f, #16a085); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">⚡</div>
+                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-align: center; max-width: 80px;">Shared Rails<br>Instant Settlement</div>
+            </div>
+
+            <!-- Employee Side -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.1); border: 2px solid rgba(39, 174, 96, 0.3); border-radius: 24px; padding: 30px; position: relative;">
+                <div style="position: absolute; top: -15px; left: 30px; background: #27ae60; color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">EMPLOYEE APP</div>
+                
+                <div style="text-align: center; margin: 20px 0 25px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">📱</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: white;">Personal Finance Hub</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">Earnings, wallet, payments — all in one</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">⚡</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Daily Pay</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Access earned wages</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">👛</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Wallet</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Balances & history</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">🔄</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">P2P Payments</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Pay coworkers & more</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">💳</div>
+                        <div style="font-size: 0.8rem; font-weight: 600; color: white;">Paier Card</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Coming Phase 3</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: rgba(39, 174, 96, 0.15); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 0.75rem; color: #27ae60; font-weight: 600;">VENMO/ZELLE GROWTH PATH</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Growth Flywheel -->
+        <div style="margin-top: 40px; max-width: 1100px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">1.</span> Employer signs up
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">2.</span> Employees get app
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">3.</span> Use daily pay
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem;">
+                    <span style="color: #f4d03f;">4.</span> P2P with coworkers
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 12px 20px; border-radius: 25px; font-size: 0.85rem; border: 1px solid rgba(39, 174, 96, 0.4);">
+                    <span style="color: #27ae60;">5.</span> Invite anyone → Consumer fintech
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Employee App Demo - ANIMATED -->
+    <div class="slide blue" id="slide-7a">
+        <div class="slide-counter">8 / 14</div>
+        <h2>The Employee Experience</h2>
+        <p style="color: #27ae60; margin-bottom: 20px; font-size: 1rem;">W2 wages + contract gigs. Daily pay. Auto-budgeting.</p>
+        
+        <div style="display: flex; justify-content: center; align-items: flex-start; gap: 50px; max-width: 1400px; margin: 10px auto;">
+            
+            <!-- Screen 1: Home/Wallet -->
+            <div style="text-align: center;">
+                <div class="ee-demo-phone" id="ee-demo-phone1" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div>
+                                    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5);">Welcome back</div>
+                                    <div style="font-size: 1.1rem; font-weight: 700; color: white;">Mike R.</div>
+                                </div>
+                                <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #3498db, #2980b9); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">MR</div>
+                            </div>
+                            
+                            <div id="ee-balance-card" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.2)); border-radius: 15px; padding: 15px; margin-bottom: 12px; border: 1px solid rgba(39, 174, 96, 0.3); text-align: center;">
+                                <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Total Available</div>
+                                <div id="ee-total-balance" style="font-size: 2rem; font-weight: 800; color: white;">$3,247</div>
+                                <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.65rem;">
+                                    <div><span style="color: #3498db;">$1,120</span><br><span style="color: rgba(255,255,255,0.5);">W2</span></div>
+                                    <div><span style="color: #27ae60;">$1,400</span><br><span style="color: rgba(255,255,255,0.5);">Contracts</span></div>
+                                    <div><span style="color: #9b59b6;">$727</span><br><span style="color: rgba(255,255,255,0.5);">Wallet</span></div>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Income Sources</div>
+                            
+                            <div style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="font-size: 1rem;">💼</div>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Acme Corp (W2)</div>
+                                            <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">64 hrs • $28/hr</div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: #3498db;">$1,120</div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="font-size: 1rem;">📝</div>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Side Gigs (1099)</div>
+                                            <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">2 active contracts</div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60;">$1,400</div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 8px;">
+                                <button id="ee-get-paid-btn" style="flex: 1; background: linear-gradient(135deg, #27ae60, #16a085); border: none; border-radius: 10px; padding: 12px 8px; color: white; font-weight: 700; font-size: 0.75rem; cursor: pointer;">⚡ Get Paid</button>
+                                <button style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 12px 8px; color: white; font-weight: 600; font-size: 0.75rem;">📦 Bundles</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Home / Wallet</div>
+            </div>
+
+            <!-- Screen 2: Get Paid -->
+            <div style="text-align: center;">
+                <div class="ee-demo-phone ee-dimmed" id="ee-demo-phone2" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 2rem; margin-bottom: 5px;">⚡</div>
+                                <div style="font-size: 1.1rem; font-weight: 700; color: white;">Get Paid Now</div>
+                            </div>
+                            
+                            <div id="ee-available-card" style="background: linear-gradient(135deg, rgba(39, 174, 96, 0.2), rgba(22, 160, 133, 0.2)); border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid rgba(39, 174, 96, 0.3); text-align: center;">
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Available to Access</div>
+                                <div id="ee-available-amount" style="font-size: 1.6rem; font-weight: 800; color: white;">$2,520</div>
+                                <div style="display: flex; justify-content: center; gap: 15px; margin-top: 6px; font-size: 0.6rem; color: rgba(255,255,255,0.5);">
+                                    <span>W2: $1,120</span>
+                                    <span>Contracts: $1,400</span>
+                                </div>
+                            </div>
+                            
+                            <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Select Amount</div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px;">
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$100</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$250</div>
+                                <div id="ee-selected-amount" style="background: rgba(39, 174, 96, 0.3); border: 1px solid #27ae60; border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem; font-weight: 700; color: #27ae60;">$500</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$1,000</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">$1,500</div>
+                                <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; text-align: center; font-size: 0.75rem;">Max</div>
+                            </div>
+                            
+                            <div id="ee-bundle-toggle" style="background: rgba(155, 89, 182, 0.15); border: 1px solid rgba(155, 89, 182, 0.3); border-radius: 10px; padding: 10px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1rem;">📦</span>
+                                        <div>
+                                            <div style="font-size: 0.7rem; font-weight: 600; color: white;">Auto-Bundle Active</div>
+                                            <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">$85 → Rent, Phone, Savings</div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 36px; height: 20px; background: #9b59b6; border-radius: 10px; position: relative;">
+                                        <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-bottom: 12px; font-size: 0.65rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span style="color: rgba(255,255,255,0.5);">To Bundles</span><span style="color: #9b59b6;">-$85</span></div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span style="color: rgba(255,255,255,0.5);">You receive</span><span style="color: #27ae60; font-weight: 600;">$415</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: rgba(255,255,255,0.5);">Fee</span><span style="color: #27ae60;">$0</span></div>
+                            </div>
+                            
+                            <button id="ee-confirm-btn" style="width: 100%; background: linear-gradient(135deg, #27ae60, #16a085); border: none; border-radius: 10px; padding: 14px; color: white; font-weight: 700; font-size: 0.9rem; cursor: pointer;">
+                                ⚡ Get $500 Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Get Paid</div>
+            </div>
+
+            <!-- Screen 3: Bundles -->
+            <div style="text-align: center;">
+                <div class="ee-demo-phone ee-dimmed" id="ee-demo-phone3" style="position: relative; width: 280px; background: #1a1a1a; border-radius: 35px; padding: 8px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); border: 6px solid #2c2c2c;">
+                    <div style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 100px; height: 22px; background: #1a1a1a; border-radius: 0 0 15px 15px; z-index: 10;"></div>
+                    <div style="background: linear-gradient(180deg, #0a1f1a 0%, #051510 100%); border-radius: 28px; overflow: hidden; height: 520px; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 35px 15px 10px 15px; font-size: 0.65rem; color: white;">
+                            <div>9:41</div>
+                            <div>📶 🔋</div>
+                        </div>
+                        <div style="padding: 0 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: white;">📦 Bundles</div>
+                                <div style="background: rgba(155, 89, 182, 0.2); padding: 4px 10px; border-radius: 10px; font-size: 0.65rem; color: #9b59b6;">$85/day</div>
+                            </div>
+                            
+                            <div id="ee-bundles-total" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(142, 68, 173, 0.2)); border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid rgba(155, 89, 182, 0.3); text-align: center;">
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Total Bundled</div>
+                                <div id="ee-bundled-amount" style="font-size: 1.6rem; font-weight: 800; color: white;">$1,297</div>
+                                <div style="font-size: 0.6rem; color: rgba(255,255,255,0.5);">Auto-saved from earnings</div>
+                            </div>
+                            
+                            <!-- Rent Bundle -->
+                            <div id="ee-bundle-rent" style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1.2rem;">🏠</span>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Rent</div>
+                                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">Due Jan 1 • $50/day</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60;">$892</div>
+                                        <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">of $1,400</div>
+                                    </div>
+                                </div>
+                                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div id="ee-rent-progress" style="width: 64%; height: 100%; background: linear-gradient(90deg, #27ae60, #16a085); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phone Bundle -->
+                            <div id="ee-bundle-phone" style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1.2rem;">📱</span>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Phone Bill</div>
+                                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">Due Dec 28 • $5/day</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #3498db;">$65</div>
+                                        <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">of $85</div>
+                                    </div>
+                                </div>
+                                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div id="ee-phone-progress" style="width: 76%; height: 100%; background: linear-gradient(90deg, #3498db, #2980b9); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Savings Bundle -->
+                            <div id="ee-bundle-savings" style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 1.2rem;">💰</span>
+                                        <div>
+                                            <div style="font-size: 0.75rem; font-weight: 600;">Emergency Fund</div>
+                                            <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">No due date • $30/day</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; font-weight: 700; color: #f4d03f;">$340</div>
+                                        <div style="font-size: 0.55rem; color: rgba(255,255,255,0.5);">of $1,000</div>
+                                    </div>
+                                </div>
+                                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div id="ee-savings-progress" style="width: 34%; height: 100%; background: linear-gradient(90deg, #f4d03f, #f39c12); border-radius: 3px;"></div>
+                                </div>
+                            </div>
+                            
+                            <div id="ee-bundle-success" style="display: none; background: rgba(39, 174, 96, 0.2); border: 1px solid rgba(39, 174, 96, 0.4); border-radius: 10px; padding: 12px; text-align: center;">
+                                <div style="font-size: 1.5rem; margin-bottom: 5px;">✓</div>
+                                <div style="font-size: 0.8rem; font-weight: 600; color: #27ae60;">+$85 Added!</div>
+                                <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Auto-bundled from daily pay</div>
+                            </div>
+                            
+                            <button style="width: 100%; background: rgba(155, 89, 182, 0.2); border: 1px solid rgba(155, 89, 182, 0.4); border-radius: 10px; padding: 12px; color: #9b59b6; font-weight: 600; font-size: 0.8rem; cursor: pointer;">
+                                + Create New Bundle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Bundles</div>
+            </div>
+        </div>
+
+        <button onclick="runEmployeeAnimation()" class="replay-btn">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 9: Technology Stack -->
+    <div class="slide blue" id="slide-7">
+        <div class="slide-counter">9 / 14</div>
+        <h2>Paier Architecture</h2>
+        <div class="subtitle" style="margin-top: 0; margin-bottom: 30px;">AI-powered decisions, blockchain-settled payments, traditional rails when needed</div>
+        
+        <div style="display: flex; gap: 20px; max-width: 1300px;">
+            <!-- AI Layer -->
+            <div style="flex: 1; background: rgba(155, 89, 182, 0.15); border: 1px solid rgba(155, 89, 182, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">🧠</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #9b59b6;">AI/ML LAYER</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Document Intelligence</strong><br>GPT-4 Vision for invoice OCR, data extraction, PO matching</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Contract Generation</strong><br>Fine-tuned LLM generates W2/1099 agreements from templates + history</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Fraud Detection</strong><br>Custom ML for anomaly detection, duplicate invoices, bank verification</div>
+                    <div><strong style="color: white;">Payment Optimization</strong><br>ML routing: cost, speed, early-pay discounts</div>
+                </div>
+            </div>
+
+            <!-- Blockchain Layer -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.15); border: 1px solid rgba(244, 208, 63, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">⛓️</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #f4d03f;">BLOCKCHAIN LAYER</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Network</strong><br>Base (Coinbase L2) — low fees, instant finality, enterprise-grade</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Settlement</strong><br>USDC stablecoin for 24/7 instant settlement, no float</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Payment Triggers</strong><br>Solidity contracts for milestone escrow, auto-release on approval</div>
+                    <div><strong style="color: white;">Audit Trail</strong><br>Immutable on-chain record of approvals, signatures, payments</div>
+                </div>
+            </div>
+
+            <!-- Payment Rails -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.15); border: 1px solid rgba(39, 174, 96, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">💸</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #27ae60;">PAYMENT RAILS</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Traditional</strong><br>Modern Treasury — ACH, same-day ACH, wire for fiat payments</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Crypto On/Off Ramp</strong><br>Coinbase Prime — USDC ↔ USD conversion, custody</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Intelligent Routing</strong><br>AI selects optimal rail per payment: speed vs cost vs recipient preference</div>
+                    <div><strong style="color: white;">Daily Batching</strong><br>Aggregate payments, optimize timing, maximize early-pay discounts</div>
+                </div>
+            </div>
+
+            <!-- Compliance Layer -->
+            <div style="flex: 1; background: rgba(52, 152, 219, 0.15); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: 16px; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5rem;">🔐</div>
+                    <div style="font-size: 1rem; font-weight: 700; color: #3498db;">COMPLIANCE LAYER</div>
+                </div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6;">
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Identity</strong><br>Persona for KYC/KYB, Plaid for bank verification</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Payroll Engine</strong><br>Check — W2 processing, tax filing, state compliance</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: white;">Tax Mapping</strong><br>Auto W-9 collection, 1099-NEC generation, withholding calc</div>
+                    <div><strong style="color: white;">Security</strong><br>SOC 2 Type II, end-to-end encryption, role-based access</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow Diagram -->
+        <div style="margin-top: 30px; max-width: 1100px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                <div style="background: rgba(155, 89, 182, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #9b59b6;">AI</span> extracts & validates
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(244, 208, 63, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #f4d03f;">Smart contract</span> holds escrow
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #27ae60;">USDC or ACH</span> settles instantly
+                </div>
+                <div style="color: rgba(255,255,255,0.3);">→</div>
+                <div style="background: rgba(52, 152, 219, 0.2); padding: 10px 18px; border-radius: 20px; font-size: 0.8rem;">
+                    <span style="color: #3498db;">1099</span> auto-generated
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Core Architecture - ANIMATED -->
+    <div class="slide teal" id="slide-8">
+        <div class="slide-counter">10 / 14</div>
+        
+        <h2 style="font-size: 2.8rem; margin-bottom: 10px;">Paier Payment Flow</h2>
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 35px; text-align: center;">AI-powered routing across traditional and blockchain rails</p>
+
+        <div class="infra-compact-container">
+            <!-- Left: Core Infrastructure Stack -->
+            <div class="infra-infrastructure-section">
+                <div class="infra-section-title">⚡ System Architecture</div>
+                <div class="infra-architecture-stack">
+                    <div class="infra-arch-layer" id="infra-layer-frontend">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">📱</span>
+                            <span class="infra-layer-name">Frontend</span>
+                        </div>
+                        <div class="infra-layer-tech">React Native • Next.js • Dashboard</div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet1"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-api">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">🧠</span>
+                            <span class="infra-layer-name">AI Layer</span>
+                        </div>
+                        <div class="infra-layer-tech">GPT-4 Vision • Custom ML • Fraud Detection</div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet2"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-services">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">⚙️</span>
+                            <span class="infra-layer-name">Core Services</span>
+                        </div>
+                        <div class="infra-services-grid">
+                            <div class="infra-service-box" id="infra-svc-ap"><div class="infra-service-icon">📄</div>AP Engine</div>
+                            <div class="infra-service-box" id="infra-svc-router"><div class="infra-service-icon">🔀</div>Router</div>
+                            <div class="infra-service-box" id="infra-svc-ledger"><div class="infra-service-icon">📒</div>Ledger</div>
+                            <div class="infra-service-box" id="infra-svc-payroll"><div class="infra-service-icon">💼</div>Payroll</div>
+                        </div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet3"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-data">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">⛓️</span>
+                            <span class="infra-layer-name">Blockchain</span>
+                        </div>
+                        <div class="infra-layer-tech">Base L2 • USDC • Solidity Escrow</div>
+                    </div>
+                    <div class="infra-connector"><div class="infra-connector-line"><div class="infra-data-packet" id="infra-packet4"></div></div></div>
+                    <div class="infra-arch-layer" id="infra-layer-external">
+                        <div class="infra-layer-header">
+                            <span class="infra-layer-icon">🌐</span>
+                            <span class="infra-layer-name">External APIs</span>
+                        </div>
+                        <div class="infra-layer-tech">Modern Treasury • Coinbase Prime • Check • Plaid</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Batch Payment Flow -->
+            <div class="infra-batch-section">
+                <div class="infra-section-title">🔄 Payment Routing</div>
+                <div class="infra-batch-flow">
+                    <div class="infra-batch-node infra-payment-request" id="infra-node-request">
+                        <div class="infra-node-title">📥 Payment Request</div>
+                        <div class="infra-request-example" id="infra-request-text">"Pay $4,500 to contractor"</div>
+                    </div>
+                    <div class="infra-v-connector"><div class="infra-v-line"><div class="infra-v-arrow"></div></div></div>
+                    <div class="infra-batch-node" id="infra-node-split">
+                        <div class="infra-node-title">🧠 AI Classification</div>
+                        <div class="infra-node-subtitle">Type, urgency, recipient prefs</div>
+                    </div>
+                    <div class="infra-v-connector"><div class="infra-v-line"><div class="infra-v-arrow"></div></div></div>
+                    <div class="infra-batch-node" id="infra-node-router">
+                        <div class="infra-node-title">⛓️ Escrow (if milestone)</div>
+                        <div class="infra-node-subtitle">Smart contract holds until approved</div>
+                    </div>
+                    <div class="infra-branch-connector">
+                        <svg class="infra-branch-svg" viewBox="0 0 360 35" preserveAspectRatio="none">
+                            <path class="infra-branch-path animated ach" id="infra-path-ach" d="M180,0 Q180,20 55,35" />
+                            <path class="infra-branch-path animated crypto" id="infra-path-crypto" d="M180,0 L180,35" />
+                            <path class="infra-branch-path animated wire" id="infra-path-wire" d="M180,0 Q180,20 305,35" />
+                        </svg>
+                    </div>
+                    <div class="infra-rails-container">
+                        <div class="infra-rail">
+                            <div class="infra-rail-box ach" id="infra-rail-ach">
+                                <div class="infra-rail-icon">🏦</div>
+                                <div class="infra-rail-name ach">ACH</div>
+                                <div class="infra-rail-provider">Modern Treasury</div>
+                            </div>
+                        </div>
+                        <div class="infra-rail">
+                            <div class="infra-rail-box crypto" id="infra-rail-crypto">
+                                <div class="infra-rail-icon">⚡</div>
+                                <div class="infra-rail-name crypto">USDC</div>
+                                <div class="infra-rail-provider">Base L2 • Instant</div>
+                            </div>
+                        </div>
+                        <div class="infra-rail">
+                            <div class="infra-rail-box wire" id="infra-rail-wire">
+                                <div class="infra-rail-icon">🌐</div>
+                                <div class="infra-rail-name wire">Wire</div>
+                                <div class="infra-rail-provider">International</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infra-key-components">
+                        <div class="infra-component-tag"><span class="infra-tag-icon">📊</span>1099 Auto-Generated</div>
+                        <div class="infra-component-tag"><span class="infra-tag-icon">📒</span>On-Chain Audit Trail</div>
+                        <div class="infra-component-tag"><span class="infra-tag-icon">🔑</span>Idempotency</div>
+                        <div class="infra-component-tag"><span class="infra-tag-icon">🪝</span>Webhooks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="replay-btn" onclick="runInfraAnimation()">🔄 Replay Animation</button>
+    </div>
+
+    <!-- Slide 11: Go-to-Market: SMB to Enterprise -->
+    <div class="slide blue" id="slide-9">
+        <div class="slide-counter">11 / 14</div>
+        <h2>Go-to-Market Strategy</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 25px;">AP is the wedge → Employers onboard employees for free → P2P unlocks at scale</p>
+        
+        <!-- Flywheel Visualization -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 20px 30px; margin-bottom: 25px; max-width: 1100px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.8rem;">
+                <div style="background: rgba(244,208,63,0.2); color: #f4d03f; padding: 10px 12px; border-radius: 10px; font-weight: 600;">🏢 Sell AP</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(52,152,219,0.2); color: #3498db; padding: 10px 12px; border-radius: 10px; font-weight: 600;">👥 Employer Onboards</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(155,89,182,0.2); color: #9b59b6; padding: 10px 12px; border-radius: 10px; font-weight: 600;">💳 Wallet + Coworker P2P</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(39,174,96,0.2); color: #27ae60; padding: 10px 12px; border-radius: 10px; font-weight: 600;">⚡ Full P2P (Y2)</div>
+                <span style="color: rgba(255,255,255,0.4);">→</span>
+                <div style="background: rgba(244,208,63,0.2); color: #f4d03f; padding: 10px 12px; border-radius: 10px; font-weight: 600;">↻ Viral Growth</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 25px; max-width: 1300px;">
+            <!-- Year 1: AP Wedge -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.1); border: 2px solid rgba(244, 208, 63, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #f4d03f; color: #1a1a1a; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 1 • AP WEDGE</div>
+                <h3 style="color: #f4d03f; font-size: 1.3rem; margin-bottom: 12px;">Enterprise AP + Employee Wallets</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Sell AP automation to employers; they onboard employees at zero CAC to us</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        AI invoice processing & matching
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Vendor & contractor payments
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Employee daily pay + digital wallet
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Coworker P2P payments
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #f4d03f;">✓</span>
+                        Paier Card (interchange from Day 1)
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>300 SMB • 15 MM • 3 Ent • 8K cards</span>
+                    <span style="color: #f4d03f; font-weight: 700;">$2.5M ARR</span>
+                </div>
+            </div>
+
+            <!-- Year 2: Full P2P -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.1); border: 2px solid rgba(39, 174, 96, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #27ae60; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 2 • FULL P2P</div>
+                <h3 style="color: #27ae60; font-size: 1.3rem; margin-bottom: 12px;">Mainstream P2P Adoption</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Open P2P beyond coworkers — external sends, viral growth</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        Send to anyone (not just coworkers)
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        Bill splitting & payment requests
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        USDC yield on bundles
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #27ae60;">+</span>
+                        Mid-market AP expansion
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>700 SMB • 100 MM • 35 Ent • 35K cards</span>
+                    <span style="color: #27ae60; font-weight: 700;">$12M ARR</span>
+                </div>
+            </div>
+
+            <!-- Year 3: Enterprise Engine -->
+            <div style="flex: 1; background: rgba(155, 89, 182, 0.1); border: 2px solid rgba(155, 89, 182, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #9b59b6; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 3 • ENTERPRISE ENGINE</div>
+                <h3 style="color: #9b59b6; font-size: 1.3rem; margin-bottom: 12px;">Enterprise = 40% of ARR</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Network effects + enterprise features drive growth</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        Multi-entity / multi-currency
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        Global contractor payments
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        SOC 2 Type II, SSO, audit logs
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #9b59b6;">+</span>
+                        ERP deep integrations
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>1K SMB • 250 MM • 100 Ent • 100K cards</span>
+                    <span style="color: #9b59b6; font-weight: 700;">$32M ARR</span>
+                </div>
+            </div>
+
+            <!-- Year 5: Scale -->
+            <div style="flex: 1; background: rgba(52, 152, 219, 0.1); border: 2px solid rgba(52, 152, 219, 0.3); border-radius: 20px; padding: 25px;">
+                <div style="background: #3498db; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 12px;">YEAR 5 • MARKET LEADER</div>
+                <h3 style="color: #3498db; font-size: 1.3rem; margin-bottom: 12px;">Full-Stack Dominance</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 15px;">Enterprise = 60% of ARR, 5 revenue streams</p>
+                
+                <div style="font-size: 0.85rem; line-height: 1.7;">
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        400 enterprise customers
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        350K employees on cards
+                    </div>
+                    <div style="margin-bottom: 8px; padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        $15K avg enterprise ARPU
+                    </div>
+                    <div style="padding-left: 18px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #3498db;">★</span>
+                        Consumer network effects
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.6);">
+                    <span>1.5K SMB • 650 MM • 400 Ent • 350K cards</span>
+                    <span style="color: #3498db; font-weight: 700;">$100M ARR</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Use Cases -->
+    <div class="slide teal" id="slide-10">
+        <div class="slide-counter">12 / 14</div>
+        <h2>Real-World Impact</h2>
+        <p class="subtitle" style="margin-top: 5px; margin-bottom: 40px;">How Paier solves critical payment challenges</p>
+        
+        <div style="display: flex; gap: 40px; max-width: 1300px;">
+            <!-- Use Case 1: Nonprofit -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px; border-top: 5px solid #e74c3c;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #e74c3c, #c0392b); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">🏛️</div>
+                    <div>
+                        <div style="font-size: 1.3rem; font-weight: 700; color: #e74c3c;">Regional Healthcare Nonprofit</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">3,500 payments/month • 45 staff • 200+ contractors</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(231, 76, 60, 0.15); border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #e74c3c; margin-bottom: 8px;">⚠️ THE PROBLEM</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        Suffered <strong>$47K in fraudulent contractor payments</strong> after email compromise. Manual AP process couldn't detect fake invoice submissions. No verification layer for new contractor bank details.
+                    </div>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.15); border-radius: 12px; padding: 15px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60; margin-bottom: 8px;">✓ PAY.I SOLUTION</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                        • AI flags anomalous invoices &amp; new bank details<br>
+                        • Daily payment runs with same-day settlement<br>
+                        • Contractor identity verification via Persona<br>
+                        • Complete audit trail for every change
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">$0</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Fraud losses since</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">Daily</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Payment runs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Case 2: Design Firm -->
+            <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px; border-top: 5px solid #9b59b6;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #9b59b6, #8e44ad); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">🎨</div>
+                    <div>
+                        <div style="font-size: 1.3rem; font-weight: 700; color: #9b59b6;">Boutique Interior Design Studio</div>
+                        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">8 employees • 25 contractors • $2M annual projects</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(155, 89, 182, 0.15); border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #9b59b6; margin-bottom: 8px;">⚠️ THE PROBLEM</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5;">
+                        Founder spending <strong>15+ hours/week on AP and contractor admin</strong>. Proposals and contracts drafted manually in Word. Missed project milestones meant delayed payments and frustrated contractors.
+                    </div>
+                </div>
+                
+                <div style="background: rgba(39, 174, 96, 0.15); border-radius: 12px; padding: 15px;">
+                    <div style="font-size: 0.8rem; font-weight: 700; color: #27ae60; margin-bottom: 8px;">✓ PAY.I SOLUTION</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                        • AI generates proposals &amp; contracts from briefs<br>
+                        • Instant contractor payments — no more 30-day waits<br>
+                        • Daily AP runs for vendor invoices<br>
+                        • One dashboard for all payments
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">15 hrs</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">→ 2 hrs/week</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #27ae60;">Same-Day</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.6);">Contractor payments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Business Model & Financials -->
+    <div class="slide teal" id="slide-11">
+        <div class="slide-counter">13 / 14</div>
+        <h2>Financial Projections</h2>
+        
+        <div style="max-width: 1350px; margin-top: 20px;">
+            <!-- Revenue Growth Table -->
+            <div style="background: rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 20px; margin-bottom: 25px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid rgba(255,255,255,0.2);">
+                            <th style="text-align: left; padding: 12px 15px; color: rgba(255,255,255,0.6); font-weight: 600;">Metric</th>
+                            <th style="text-align: center; padding: 12px 15px; color: #f4d03f; font-weight: 700;">Y1</th>
+                            <th style="text-align: center; padding: 12px 15px; color: #27ae60; font-weight: 700;">Y2</th>
+                            <th style="text-align: center; padding: 12px 15px; color: #9b59b6; font-weight: 700;">Y3</th>
+                            <th style="text-align: center; padding: 12px 15px; color: #3498db; font-weight: 700;">Y4</th>
+                            <th style="text-align: center; padding: 12px 15px; color: #27ae60; font-weight: 700;">Y5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">SMB Customers</td>
+                            <td style="text-align: center; padding: 15px;">300</td>
+                            <td style="text-align: center; padding: 15px;">700</td>
+                            <td style="text-align: center; padding: 15px;">1,000</td>
+                            <td style="text-align: center; padding: 15px;">1,250</td>
+                            <td style="text-align: center; padding: 15px;">1,500</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">Mid-Market</td>
+                            <td style="text-align: center; padding: 15px;">15</td>
+                            <td style="text-align: center; padding: 15px;">100</td>
+                            <td style="text-align: center; padding: 15px;">250</td>
+                            <td style="text-align: center; padding: 15px;">450</td>
+                            <td style="text-align: center; padding: 15px;">650</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">Enterprise</td>
+                            <td style="text-align: center; padding: 15px;">3</td>
+                            <td style="text-align: center; padding: 15px;">35</td>
+                            <td style="text-align: center; padding: 15px;">100</td>
+                            <td style="text-align: center; padding: 15px;">250</td>
+                            <td style="text-align: center; padding: 15px;">400</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 15px; font-weight: 600;">Employees with Wallets</td>
+                            <td style="text-align: center; padding: 15px;">8K</td>
+                            <td style="text-align: center; padding: 15px;">35K</td>
+                            <td style="text-align: center; padding: 15px;">100K</td>
+                            <td style="text-align: center; padding: 15px;">200K</td>
+                            <td style="text-align: center; padding: 15px;">350K</td>
+                        </tr>
+                        <tr style="background: rgba(244, 208, 63, 0.1);">
+                            <td style="padding: 15px; font-weight: 700; color: #f4d03f;">ARR</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$2.5M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$12M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$32M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700;">$65M</td>
+                            <td style="text-align: center; padding: 15px; font-weight: 700; color: #27ae60; font-size: 1.1rem;">$100M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Revenue Breakdown & Unit Economics -->
+            <div style="display: flex; gap: 30px;">
+                <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px;">
+                    <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 18px; text-align: center;">💰 Revenue Streams (Y5)</h3>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">SaaS Platform (AP + Payroll)</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">45%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #f4d03f, #f39c12); width: 45%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">💳 Card Interchange</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">20%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #9b59b6, #8e44ad); width: 20%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">AP Payment Processing</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">15%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #3498db, #2980b9); width: 15%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">⚡ Daily Pay / EWA Fees</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">10%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #27ae60, #16a085); width: 10%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 0.85rem;">🔵 USDC Yield Spread</span>
+                            <span style="font-size: 0.85rem; font-weight: 700;">10%</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 8px;">
+                            <div style="background: linear-gradient(90deg, #1abc9c, #16a085); width: 10%; height: 100%; border-radius: 10px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px;">
+                    <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 18px; text-align: center;">📊 Unit Economics (Y3+)</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">$1,500</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">CAC (Employer Only)</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">$0</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">CAC per Employee</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">$45,000</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">LTV (3-yr)</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">30:1</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">LTV:CAC Ratio</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">75%</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">Gross Margin</div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 800; color: #27ae60;">4 mo</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">CAC Payback</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: rgba(244, 208, 63, 0.1); border-radius: 8px; border-left: 3px solid #f4d03f;">
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.9); line-height: 1.4;">
+                            <strong style="color: #f4d03f;">Why 30:1?</strong> We acquire employers → their employees onboard free → each employee generates card + daily pay revenue
+                        </div>
+                    </div>
+                </div>
+
+                <div style="flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 25px;">
+                    <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 18px; text-align: center;">🎯 Key Assumptions</h3>
+                    <div style="font-size: 0.75rem; line-height: 1.6; color: rgba(255,255,255,0.85);">
+                        <div style="margin-bottom: 5px;">• <strong>SMB ARPU:</strong> $400/mo</div>
+                        <div style="margin-bottom: 5px;">• <strong>Mid-Market ARPU:</strong> $2,500/mo</div>
+                        <div style="margin-bottom: 5px;">• <strong>Enterprise ARPU:</strong> $15,000/mo</div>
+                        <div style="margin-bottom: 5px;">• <strong>Avg employees/customer:</strong> 50</div>
+                        <div style="margin-bottom: 5px;">• <strong>Card spend:</strong> $2K/mo per employee</div>
+                        <div style="margin-bottom: 5px;">• <strong>Interchange:</strong> 1.75% avg</div>
+                        <div style="margin-bottom: 5px;">• <strong>Net Revenue Retention:</strong> 115%</div>
+                        <div>• <strong>Churn:</strong> 5% → 2% by Y3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: The Ask / Team / Contact -->
+    <div class="slide blue" id="slide-12">
+        <div class="slide-counter">14 / 14</div>
+        
+        <div class="paier-logo" style="gap: 20px; margin-bottom: 5px;">
+            <div class="circuit-logo-container" style="position: relative; width: 80px; height: 80px;">
+                <!-- Glow behind logo -->
+                <div class="circuit-glow"></div>
+                <svg class="circuit-logo-svg" viewBox="0 0 100 100" width="80" height="80" style="position: relative; z-index: 1;">
+                    <!-- Base dim paths -->
+                    <rect class="circuit-base-path" x="12" y="12" width="76" height="76" rx="10" stroke="#f4d03f" stroke-width="3" fill="none"/>
+                    <path class="circuit-base-path" d="M32,24 L32,74" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path class="circuit-base-path" d="M32,24 L55,24 Q70,24 70,40 Q70,54 55,54 L44,54" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path class="circuit-base-path" d="M44,54 L44,74" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    
+                    <!-- Animated bright paths -->
+                    <rect class="circuit-box-outline" x="12" y="12" width="76" height="76" rx="10" stroke="#f4d03f" stroke-width="3" fill="none"/>
+                    
+                    <!-- Pulse dot for box -->
+                    <circle class="circuit-pulse-dot circuit-pulse-1" r="4" fill="#fff"/>
+                    
+                    <!-- P strokes with pulses -->
+                    <path class="circuit-p-vertical" d="M32,74 L32,24" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <circle class="circuit-pulse-dot circuit-pulse-2" r="3" fill="#fff"/>
+                    
+                    <path class="circuit-p-curve" d="M32,24 L55,24 Q70,24 70,40 Q70,54 55,54 L44,54" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <circle class="circuit-pulse-dot circuit-pulse-3" r="3" fill="#fff"/>
+                    
+                    <path class="circuit-p-descender" d="M44,54 L44,74" stroke="#f4d03f" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <circle class="circuit-pulse-dot circuit-pulse-4" r="3" fill="#fff"/>
+                    
+                    <!-- Terminal circles -->
+                    <circle class="circuit-circle-left" cx="32" cy="74" r="5" fill="#f4d03f"/>
+                    <circle class="circuit-circle-right" cx="44" cy="74" r="5" fill="#f4d03f"/>
+                </svg>
+            </div>
+            <span class="paier-wordmark" style="font-size: 3.5rem;">Paier</span>
+        </div>
+        <p style="font-size: 1.1rem; font-weight: 300; margin: 5px 0 20px; text-align: center; color: rgba(255,255,255,0.8);">
+            AP Automation for Employers. Daily Pay for Employees.
+        </p>
+        
+        <!-- The Ask & Use of Funds - Two Large Blocks -->
+        <div style="display: flex; gap: 30px; margin-bottom: 25px; max-width: 1100px; width: 100%;">
+            <!-- The Ask -->
+            <div style="flex: 1; background: rgba(244, 208, 63, 0.1); border: 2px solid rgba(244, 208, 63, 0.3); border-radius: 20px; padding: 30px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 12px;">🎯</div>
+                <h3 style="color: #f4d03f; font-size: 1.4rem; margin-bottom: 12px;">The Ask</h3>
+                <div style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 12px;">$4M Seed</div>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                    18-month runway to product-market fit<br>
+                    <span style="color: #f4d03f;">450 SMB</span> • <span style="color: #f4d03f;">40 Mid-Market</span> • <span style="color: #f4d03f;">8 Enterprise</span><br>
+                    <span style="font-weight: 700; color: #27ae60;">$6M ARR</span>
+                </p>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(244, 208, 63, 0.3);">
+                    <a href="mailto:Matt@finkle.com" class="email-btn" style="display: inline-block; background: rgba(244, 208, 63, 0.15); border: 2px solid #f4d03f; color: #f4d03f; text-decoration: none; font-size: 1.1rem; font-weight: 700; padding: 12px 28px; border-radius: 30px; transition: all 0.3s ease;">📧 Matt@finkle.com</a>
+                </div>
+            </div>
+            
+            <!-- Use of Funds -->
+            <div style="flex: 1; background: rgba(39, 174, 96, 0.1); border: 2px solid rgba(39, 174, 96, 0.3); border-radius: 20px; padding: 30px; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 12px;">💰</div>
+                <h3 style="color: #27ae60; font-size: 1.4rem; margin-bottom: 12px;">Use of Funds</h3>
+                <div style="font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 2; text-align: left; padding: 0 20px;">
+                    <div><strong style="color: #27ae60;">50%</strong> Engineering (AI/ML, blockchain, platform)</div>
+                    <div><strong style="color: #27ae60;">25%</strong> Go-to-Market (sales, marketing)</div>
+                    <div><strong style="color: #27ae60;">15%</strong> Compliance &amp; Licensing</div>
+                    <div><strong style="color: #27ae60;">10%</strong> Operations</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Founding Team - Yellow -->
+        <div style="max-width: 1100px; width: 100%; margin-bottom: 20px;">
+            <div style="background: rgba(244, 208, 63, 0.1); border: 2px solid rgba(244, 208, 63, 0.3); border-radius: 20px; padding: 20px 30px;">
+                <h3 style="color: #f4d03f; font-size: 1.1rem; margin-bottom: 15px; text-align: center;">Founding Team</h3>
+                <div style="display: flex; justify-content: center; gap: 50px;">
+                    <!-- Matthew Finkle -->
+                    <div style="text-align: center;">
+                        <div style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #f4d03f, #f39c12); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; border: 3px solid rgba(244, 208, 63, 0.5); overflow: hidden;"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEA8ADwAAD/7QBgUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAACccAVoAAxslRxwCAAACAAIcAjwABjEzMDAwNRwCNwAIMjAyNTA2MDUAOEJJTQQlAAAAAAAQqrBnDEJhwv9YefM+lEz0m//hAQ5FeGlmAABNTQAqAAAACAAGARoABQAAAAEAAABWARsABQAAAAEAAABeASgAAwAAAAEAAgAAATEAAgAAACIAAABmATIAAgAAABQAAACIh2kABAAAAAEAAACcAAAAAAAAAPAAAAABAAAA8AAAAAFBZG9iZSBMaWdodHJvb20gOC4zLjEgKE1hY2ludG9zaCkAMjAyNTowNjowNSAxMzowNjo1MgAABpAAAAcAAAAEMDIzMZADAAIAAAAUAAAA6pAQAAIAAAAHAAAA/qABAAMAAAABAAEAAKACAAQAAAABAAAF6KADAAQAAAABAAAHYgAAAAAyMDI1OjA2OjA1IDEzOjAwOjA1AC0wNDowMAAA/9sAQwAFAwQEBAMFBAQEBQUFBgcMCAcHBwcPCwsJDBEPEhIRDxERExYcFxMUGhURERghGBodHR8fHxMXIiQiHiQcHh8e/9sAQwEFBQUHBgcOCAgOHhQRFB4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e/8AAEQgAlgCWAwERAAIRAQMRAf/EABwAAAICAwEBAAAAAAAAAAAAAAUGBAcCAwgBAP/EAD0QAAEDAwMCBAQDBgUDBQAAAAECAwQABREGEiExQQcTUWEUInGRMoGhCBUjQlKxJJLB0fAWcuEzQ2Oy8f/EABsBAAIDAQEBAAAAAAAAAAAAAAMEAQIFAAYH/8QAKhEAAgICAwACAgIBBAMAAAAAAAECEQMhBBIxIkEFEzJRFAYVYaEjQnH/2gAMAwEAAhEDEQA/AOaFXC6Xd8QiUny+ThOPvSzlobtIN22IqO2palJDiOqTQ+zs70HllV7uAQ4oNJCtuc9au/iil0PM3wrS3ZWZjU1bYODkqyftUKWin7GJF6gi0zwFylPgp6L4I+1T2st6eS7dJDCZpLYbOMpxyAelFXhyZJsFqTKQ887gJAHXvVWn9E3RAZnSrPcvPt7ymnGl44JAPPfFW+ir2dd+BPjlZX9Moj3VZYlRwEucE1eMqBSgNWoPG3T8q1SkW5TjjiAQcoICT7mruZEcbOWoDV5vt7mSWnFIS46pZKVdckmlZySH8UbDlhsbwvaGZTinE55JNRCVlsulRbGltNQ27mgpztKgCM9aT5ORuSRqcHBFQchvlw2o13j+WnHOM/lSk3Ukx+L+DEXxas8ifLQ6w4ApCScY96iWaKexR51FUxKscmaw75cwqCUH8jS2VKS+IvmjFq0btRXxsAIjOK+oqMODWxHHxZTlsi2S4E7lOrUonnk9aaiowVFeVx+nhCuT0Vcgrd5J7DtR8eNSQn+uT+indPusty3JLighRGCCccVpdbQVoxutyC3VKafPzdcHg1ySRAPROLEttaVK2bgVgVzVos6ocndbzbnDbtDcghrASVdM+lVSaQJQ2D7hAaQ42t5XmpJ6qzkH/apSJaB99vaVpTARvDaMbsdOKukyT61z0hlQEry0dDg4wKsRRMNrj3FjzIjiU4GSrNTdnUP/AIN6XUq7NyJe9uCOXEpHDmPr96iLTdESei6NdXjQth0+8hluMpRSQsISMqyOh96vYNJlE+H+qQw++0hpWFLJTgdAelL5oWN4Z9SzdMMJfcRMWRvUM4ocNaLTfbZZ2lYqjMQ4ojG4UplVzNjjTrFQUvIzeo6Qe5oORLshrE/gyvPEK7ott7Sl1wbCjoenel8uHt4KZcdxtEOzzbNdkOoSlJXjAIFLxxyxu2IyU4+iNf7RITc30xmlKaB4J4pyGSI9iyxUdgVLzsZam1ApI6ii9VLZacFk2YlxDpKnOT9avHRCxJeFWSYaJCy4hzaPQVqWYVNI8ttgl3GUURUlQRypWMgVWU4xWyt0R7jDfgvuMvN7tnUgVKd+EXZO0jaXrspxbKi0lHJUE5q6RDZpvkyZGuK4LjxUtrA3ZzuGK6iVsipi+cyXt+91Qz7fSuuiSJIhONpVvx7c1VOy1hDSs95slovKQ2eOKt4dVl0aS1E2xp52KVJ4BwQeR7ig2ky36O2xp8P/ANyytFTl35neorWCt5OQodAATRlNJbA9W3SKr0/HkWq/yUs2mc60tZDJ8hXQ9knGDQ+6YVQd0Wpot5q9yDGcU5EkIxuaV8qh6HFRaOaa0W/pm1TIz6P44cRkcHrSORNz0bHGyRWOmbtRLW1dWSPxZpXM+rTNLjx7xaRTPi8px2eFr64NTil2VkZodaQB0pMYi/hx5np0JoOeLbM7PFsaFy3ZEVflNDOOq+1DUEhdUvRKusN8PrdV8yifmATwKbxyXg5jmqoHFo56YooUSI9sS+ylTfCeM444p1zpnnWxk0NJRbZEiOwhPTk5zg1TJh/ZuyKsVdWvrFxlLcCSVqzxRoxpUUqmEtCXGJCsDq1qCXeeRRKIfou3EMz2HHDw4pWcqHOc1CZPhGt7C5DeWV7Cg4AxnmubJMo8tvcpuVgrPH4ciui0i1aPLZFS7cksMg7nVAJCU5+vH61LlSs6KfhcnhtaGpNzTbLdAkXZ5pQW4+0yAlHOAefmAzjkjrikZyct+D0IqK2WbOumhdPz3mrneXF3FskriPpW2rzCSSpClbQvnqCDnsRVF2l9HLr4JV98Z5TNwQu37o8NwBEqK06QltfQLbWBnb04UDx7gZMsdFOxCj+KKpV2bl3i2xriy0gsB5tpLUhtIVuSQpAA3A5HQhQJ49LJ0VlDsXloPU0G5Q2JVuuTMtp0HYndhxJAyUqT1BA/L3pTI3Ft/RoYf1yio/ZNkvOS7sVqT8qVYFZmfN3NvhqMFRUfiyrN0x2waZ4z+IPlP5iLHcLLwWgA0eUbVCko9kO+k5gkNlCsJ56ZrP5EXDwzc+JxN9+abaYJQnzOeoq/HbfpXC7exat0eNIcdL2Bg8AnpTWSbj4M5cjj4VXZbophhbOMhPHJ7VpuF7MSRm1NQyHXmFKDyuu09ask/CItogWm1yL3OLT7izu5IHWulPps5mjUVgdtT5aYWtwH+XvUwn2RyYMES6KI2x3Up7j1qyaROmMemokfcWX0qaUQArPynNVl4c9ImXez263yRJQQoKyBznFDTbLR2jCyR40ZLl4dzteCmWWugVzgkn0zxx71E238UGxKtsuHw0euadLyY6HLRHckK4faO19tP9IVwBng9hxznrSspxi6Y7DHKa0ZDTdxnxXo8y4vXNazgoU1lhQ/qO/IB/7a5Zl/6l48STWwerwiiJWXFPNthwYLTSTtH3rnyHQePAj/AGEInh5Zoif5zxjg4NBlnkw64MIoh2rTlt06zcLgbzJjPoI+GaZwME9Fdc+vTnmjRl3WzPy4v1y0WF4Wa7b1SJCHfLEqOcr29FJJ4V9e1ZPI4rxvXjH+BF5bbeyNrn91TJKmXdvmEHGTiu46nFleVGcJ2I910w7Gj/ER97iOoFGhyu0+rAY+Sm6kA2lzWXh5CHUr9Ak004qXoabg1tjrpRx9xsi5px8uBnrQpwUf4mHkydZaAt5tb8m7O/AqKGwOSB1plUorsSuU62VLK09OiRd5SlCyeRn8P1rQuhbsCobq4Ty23EBS1c8dzRYv+i12M2jG5SZZdcbKErHX/ag5lohjRc9GvSEKuRcU4sDIR/pS0c8VoiyDpu0vXVDwab2utEoIA6Y9aJPIo7LWEY3h3KetzkuW4G3hnAB4FD/y1dIq3Y0eGHhRarvblSb485JVuISN+1KR9KdgouJR5GvBA8ZLRBsmrnNPWlDZjRQgkKSFYUobvl98nr9fegV0bG8XyimWZoHSwasEVZaDjjjaVZKASfc96y8r7S2bvGXWKH120XRuF5zLP8NI7jBA+lVgOaAjrkxZwrII4wU1dolNEYh9oFS1bgT2FC8LXZU/jHOfjuxfKJ2rQUqHYmneM01Rkc2LUrDf7JsZ24avvCSpQQmClZOe5cAouWCl6A42SUJOmMviuwYl+LaCcoGQaTUUm0a0pd42wdpzUT6pTMF9G9CiEg5qkeOnLRnZ+OlFyRakG124toeWwMqH9NauPE4rZgzzSurBGu4jMaGH46NuBnIFVngVWgcJtvYrRZgabBSnGe4HWlXgnNhuyQh69iToz6W5Dfk4zjbggjsTTuOSnEslRVTi3Xpzj5OCD3piOkch30PP+LKGHwlOw7U89aHk8IastyPOhx4aY7ik4UMDPWsfJjbdogGWmIYF+VKiNAsvHCtp6e9Fi+0KZwevUsBoJUSEK5UAO1BUN6OH7w/XaU2xpobN5ABIHWnMXI66kDmirvE/R07UXjBcVW6ODFiNtLO7ahIUWwCpSj268e1E5E0/DQ4iqK7FoSr5p3R1iatskO+aiOkuLajhxRyOoJUMD09qzIY+8rbNxzcI/Ff9lZS9aRbpJcjWy6SVJUeESG/KKvoQpST9xR3hS8Ox8qTW0R9Rz7jbdjkhxLSVNhXmLVkYPpjrURhfoR5qVoi6f1jGcd8lTT7qyONxQkH8jkiiTxxirBQzyk6MtZ6JXrGAgWuTFjSQolLUtRRyASRkAjt+tV49drQLmO4U0Sf2Xoq9Oaq1DZ7oyqPdnWGtichaFNpJ3bVDg8kGm27WjL2mmhh8RnoSb+58XtzgcqFZs1JyZo/PqgVarNbn5TMphfzJVnCelWxZHF2xfLlkouLLMiFKojbecEDrWiuZCjBnF9iLforb0MsuHJx0Heks3OfiJjEgQNMRVMArIPt6UD/cJrwvQB1deLG6nyZraPOUn5R5XSq4uVRrRwWrOf8AVFqiG8Sn45LSFnIA/vWni5LkgE8KTBFoC2JiPJe24XninHsVbLGiOrnAb3CNvIIPagSiolBlsN0EdPlOfPtPB70s4bOTDyFszUncCBxg45q0OsTmEtPz0Qppaycg8ULJTdkJWRLvIlyPE+33FUl6Oz+8mG1lCykOsYB2qxwoAqHX1NLRnKpns82HDPi8eeNVSV/9jJrvR8q7z/3o4nzwMNj5whCCkbeB1PTr+VU4878BTx38RJT4cphOtyTGEdlpY2BOcFR4xk9e3HtTUszrYPHxEvNIN+Ndtt0ubBtLTCGExoqAsgck46n3oWLK3uhjJx08dfdsUoOkWFuj/BsLUpISVlJCiB0+vQfaizm2qFsXHindEnXttLOjZUJWQoNcBRycjp/z3pbHLrkQ1lxXiZj4Mw4tt1namY6UrddKw89k5yEHcn2AIH2o2OUpZLK5ePDHxnreiR4shT2pnEg4JwKs9NgPIIIaAsrrIEh5xakH14ApHNmV0jJ5eW9IsNtbDaM9AB60t829GWCrrKb2rXuUfTmjY8cvsgDwNQvJW4yUKG08YFNf4rfhNCL4hso+O3vZQpKeMVmYnkhOqPQY4xeO7K8ct7stmQ+yFL255HStzF31SFJqO9iNClIRLdS4opUhfCc4rVp0ZrHfSN0edeAUhXlkY3Y5HNUlS9Kj9FhhxHnoH4sUhPJskYoUhmJEysbF47nrSzTk9FvoHRbmx8epalAkHuaMouig4bLffNFyp53JnWxK/LU2N27djG4ew5B7bcd6VrrKj0nAzPJxen9E6TrqdbIzcRKBvZbCXd/IJHegRi4ydM1ITxyj8lYrMeILKbu3eNSqdmx23B5DaF4SyvPCyO/TFNLDJp/2VnycXni/4I3iBruFMI/eDDKg8oKQGFZcA553dhUwg/oJPNjjFJgCx6tTGW2y5NUlDhAbVu4z6GpyY5JaAw5GO9mzXNydehNjducckNN4z23A/wClLYVbbJ5OTSS/tD94O2BDl9m3YkltlKlNcYAWvggfQDn609xY9k5f0K/kM/VRxr7F/XkR2drVbDYVgEZIHvQ8kuttgMmTpAamEuQ47EfHXHU1mQSnK2Yk32bYXWynyklfXHNPXGCFH6QrhbjJQFIUUpHUnvTOH5kJEcIgwUhPyhXQjGTTlqIWMGxTvKGpjyjMQMngDHGKxoxd2c88qo2RrXCi2B9LbSfmzgY45rRxc6C0yItsr2yeFiG5jt4kvBzetStpTwnJ7VP+5w79TRj+Om4djO926PZXPPRkJxnG3AoizRzeAM3DyYtyVE/TupozrYCU9B3oE8LFbony57cpQCFfKKpGDR12LF7mJjr/AIZIV7UfHEgxsupbrDd8uK6/5bvyOoQCd6T2xXTxRl6HwZ54XcGMmv5rymHg2S2VpSrcs43hJAI57nj9apHCrtGr/kNxoU7YxLlrcRcWlpjqSFNuJKnUqOem0DIIH1ovRvxkwi2vLPo2lrVvcU9fklO7hPwzxUOnGNo/4K5xaLKMn5F/9Ae5h8PBlaW2WFKIaTj59o9fQ+w6V1J+FJ3H0NaSnruusbWy+A6n4pCy2fmBSCTz7YFUjiUXQPJnbV2dS6MQzAiutBsNDBOAPWj44dINAsmV5Zpt2LT6Yp1FKeKMqBrF5U/k0Ry5OkiU22mU95qEg47+lBhDWhDtonqQ22N75HHatPBxeyuQITtZanTG/hxXAEjIJPQU6oJaQaGP7YiDWDfxCxvXnru6k1WWNjClS0GLs6X9i28/WlIRSTsziTNW6LAoJUcnoPWkFBPIFhpoytypTlkSlSzgHmsnNDI8rSPe8HPgiodhR11HUqEGnVEgqAHNOfiMefHkbn4aP+puTw8vESx/yACITEKMHMBNeh7Ns+YzWyO3NW0oqSpSkE9ulX6opdDponTzF1QJkxIIVyAewpLkZXHSLrY92+26etzqHdjRUg5TkDqOlKRlkm6svGNit4l6ffCV3IpStkeU9/EUAV4zuQMZyAOwyckVrYdKhu6F95ifYrSoNttPQx+B4KBKsAE4H51FXIcxZ3COhRm6nuCXdrm4AKzj2/2ov67R3+XNC1c57tydcQrGfxJHcc4okIKIpkyub2PngjAcXc3ZyvxR0ccH1wD9qq1uwUpao6I0689JQ4pwhI284NT2uJ0VUgU7uN0fQhB5VyfWsifHlkmwnIdmy4XaLZYSllSS7j86dw8eONbEkmxKkauelzfJfVsS4cJRu5P1piWTrHQZY0hL8QGZTJDjcgq3nhJ4AzVcObt6juxDtenR8Gl198bl8gmiN2zlOgzp28l0/DyBtcQrBzS2XA14JJjVdXUpsa/KWDgZApDHgn+wLYM03c3HLYtKwEqT2Ndm4tZLQVcmaVWJmqptxlSyyw0CjdkqzWpiwrr4S+TKSpn0ePIltobkJLaRyrPehz+DAXZInu29loRhtK8YwBQ0pPZw6aYeKNPnyVbcI7Utkj8thIijqO9Td622is7e4HSmMeNBooZbHqITNIMXGcVOC3OLZLYGQVEZycg5+VQyPpxRP2KD6h443KPYTJ92flRW2WW0IZbaLDTak/MpRUVE/wBs/Si0rsqtITVEPzXWQglKVDIxjJ7/AJZBojZyZDmRMS23Ut7Cr8IUBnrxn26ff7ypUitOy/PAy0mHZXDKUhanVfhAPGOeT+f5V5z8h+Scc6hEpni8cqZZWxuHudK0pQR0zineJlySVyBft2JmrdTtxVKRC2qcJwT6U7DNF6RLm5iSp+fOSp2RLBBUU9elRLISviBrxZbkZLEyORtRkqSFda7FlTTTLJt+kqJZpl6WjzHFgN/zHnFFlOGJWUZqvdquLUoxGZhAb/X0NWhmU1aRMaXoIj6tsyruuQ24jZu/FjinnFCqQXl+ItlI8n4tlae/ykYqvSKJpkd/xAsAiKbYkslR7AYqHji2dTPLRquyra3OuMEnsRzV1D+iPCTctQ2swyqO4yFY42nmqzwJ+kJgOyG3TJKnZTqVKPqvFU/UqLDjbpbMeCtqM7wM/wA2aRz4kmXi2PPgppNOpXnH7hAcVamSVPOlJCXT2bCu5PfHQZpTk8hYMevRrDDu6Dmskom6fcDMKJBhNPlNvYYbCEoZSdmSAOqiCfpjPWsrBkk8tydtnqP8aOLD1SKovVoLsdSWE7CVbiUHHPqBWlDNKLM+fGUvBbe06+tzeHylYUVbvLAIJ/53o65OvAX+F/yEINoZY2qUgrWngKUc49h7UGeWUhrDxow2S16yv+mZMBuI0y7a3pKWnst5U2tSgMkjsf70PHwsWaTm/wCSFPyGBN92EfEzUt1ZlsNNPBMZ4E7geQoHBT+oP51oYYxlGkZEsPVi0pt99bLkyaPJ3gKAPIzULGoJ9FsqtBm9ybfCtzYhvhStw3JRz0pfjQyzk+xdgGbrCV5SGGWuo7jkmn48eMdsrdhXSl8lMW5Xmo8tXzYVnGM+1dPjrIybSQGut/8AIuDiwtZWsDJpiEI440im2VFbVLZaXltY+bPSmAaIS0yFqKg2s5PpXHbPm0PpWMtL6+lQWTYWiIlFrenKB2FQm0WaTPTLkkFskq/Kuc2csaGXQ+hNZaxe8vT1imzBnCnkI2tJ/wC5Zwkfel8nLx4/5MssV+HS/g7+z5/0+83cda3Vie4PmFrjlSmc448xzjdj+lIwfU1hcz8pGfxxjGLjN7Ze77jSI7ERpltthtOxtttO1CR6BI6DisOU5SdyY/jgoeFJXlUpm0TY03lcOd8OCRjKQTtI+qSD+dPY4KM019o2ll/bisUdhLjh6jNOASNIZbAUUpxnkj3qU7J0gXJWhtO3pxUpNnOVAqM+JE7ZgKaaWFqz6g/KPvz+VHS6qxHkZrXUPMtW29RHoN2aUtlxW5LiFYcaUOikn1/Q967HkcHaM6cE0IWtNO6gsT/zyHpNnWR5U1CCG1H+lX9Kx6H8s1p4JQmrQlJOL2L6Z7jbyWUqW52xmjNLxE1a2GYTgQ+JElISNo4JqP162UbN8q8sPSGUMjDRWNwSOoqLpUiVFvYQ1ezDWiMW45QrHPFCg2FdFRSbk0OEtmnqFrNKbmkD/wBI/euolSo3Q5S5T4baYJJNDk+qtkp2Xj4b+Amu9UNNPyIP7ktywFGTOBRlJ7pb/Er7Ae9IZvyOLH92FjjbOgdDfs/eH2mQiRJgL1BOHV6eAW0kd0tD5f8ANurDz/lMuRtR0NQwJeliKV5CURWWUtsNnaltpIQ2gegA4FZ1923N7GYwSWiWln5cBQUSemM1SOjr2C7mlaMKxgIOQSOlUSCXYqa30+bvZZDtvQXXHChwobHJKeBx19vyFO8T2h3BlXVwZU90jPQMee2tpYT86FJwQR6in4q2GlSVglx/zE4TtGfbmiqIFzFiW448+8EHgHan60aMUlsWy5aPIrPw7IZQMqP4j3J9TVZOxNu9h6xQnXFpIGB3JqqKtjtbVrjreiFSFNLSlLja0hSF8ZwUngjmrqVeC8tgu6+FWnbrvlWhDdomKGQEgmOpXuOqAfbj2pnHy3D+WwbjekVFrnSuqNPOk3i0vtRsjY+gb2V/RQ4p2OeM1cWUUa9F62zvJU0ttkqUhWQk9670K2qHRmQrUT4Zkj4NDDYOCckk1VR6gnspg24f1U3YGj5FtBOM1HYlROrP2O/CyyKaRrq8JMhbLqm4LLjWWkuJxlxRPBIzhI6Z56gVg/lOY4/+NMbw4r2dOyZS1qWErHmCvPq2x2KUQQzet1yEQ/ixwanrpy+y6qge5OW9cHmYznzpdCVDGflwDRscFLG014DcqkmGRJLbgSrGSN3XmlkrbC0ha8Q/EKxaSgZmuiTPdT/hoDJBdePbHon1UePr0ouDj5Mkv6SBuVHMl01nrXUOphcNRy5Sba2+F/uhh0tx0tA/gG3GTjjceT7VuRw48a0rF1NsMsX5u73F+MsuxYbxHwyHCVBpQAGASSUpUcnGSASK749rSG+Pmcfi3oh6juaLXmO1F+KfCclAcCMfWrSe6Lzy1aQnr1RIRI2uWTa1n5gzI3K688YwfvV1BSXom5u7Y2WdUaSwiVHUHGldDjkHuCOx9qE01o6xntshLaQkACoRVkuwONvvvzpB2socUfscD+1TQOX9DhBucVuGmQ4nagkBtHcmqsqgw1dY5hLalMtPwHxsfYeAU06PTaev1qm1tel4q/RF1n4O6bZjuap0qXUoQC65b1/OAB+Itq68ddpycd+1Hwc6U30mVnhaVoqTVzZTMbcbaW0Nm3djGfbitbEklsBTKt+EwfmK/tRigVs0BEmWzFZQXHnVpbbQBypROAPvVJuk2XirZ3NFgMaJ0HY9MMFH8JKGVqH8zpJUtX+bPXtXjJt8jNKbNKKUYntwvLiIBmoO12OoJeQOox149P8AxU40u3UtPasjTJTX71j3JpQwtPzjPT1+4/vVnD4UiE9nlndB15d4wSMIaacAA6ZJH+1Vc+uJt/eiFH5oWv2gr9qazwLf/wBNz/g0Sipt5aWkqcGAMbVEZHf7UXg4scr7ekZG40UnbLe45KXMmOuyJbhCnH3Vla1n3UeTWnpLQG7C0hsOrKVJBJTjr1qqIItpt7T1wSiR8jDaVPPqHUIQCSB7nGB7kVE2oqyVf0DnAqZJdkvcLcUVEdce1cglswRGZbVv2AlPSrJlGavhpMF1U2A6W3l/iQeUOeyh/r1qyd6ZHgdhamhx4+Z8OREmFB2Ngb0LV2wodOfXFQ40dVh2IFNwrdakn+JI/iOeyR1J/wCd6kG/bCsSQ1OuKlFflwIicFWegHX8yf71SjvEbYtydvkpcpahFtjB2t4HGB6Duar5pBP4j1ZNQLa0VKktWuE5BiEAJlyVoekpUdp2bQUj2yTmlpY6yJ2XjK9HL3iFqRcHVEu2+QQhhfy5OVYIyM++DXoMT7xTFZKnReIm6JL4WIbJA/8Ag/8AFHsGOOhWdHXm+t/CQGHX4SRKB+HxsUkjaScepFZn5PkfqwNXt6C4MfaZP8S5iWVW9xYWpCX0FWD0+YisLBjqNr0dlLdMS9TXxuJdviPlU08lTbyRn5gf06fn0pzBBRh8gUm2yHHvbghQI7Sws+d5CcdSQraP/smqShVtfZZOw54e3j94+I98mpOWEsqQk9MpQsAH86W5OK8cVIJj9Jvi401N0e3JGF+XILicenQ/3o/GgozdFMsm40VVa4i5MhLLSSVKNOSairARt6CV6sL8eH5+9ClpG5QzzVISt68J2BFtx0QXi8tTTb76GVrQOQnbvUBwep2c4P09SqnJRZMf7AzrTbcl1uO4p1gLIbWpOCU9siuaS8JTPgkFQyOBXUcborXmyMqHyJ5/KuIZtjwm589K3kgpCx9hVrK3SJjs9SZlxmIz5pUmFHGenGVf3rq1ZC3o33JZQ3D09Hc2FwedLWOyff7/AKmo+iVXoXixvi1RoyQUReENNDjfzyT7evrQ3aWjglqC7JfuMWzRj/ho+CvaODjpx9en0qjC440rYjak0ZZ7nq2ZcZDg3SW0uFK+gIJScf5f1rW4TvF/8Fs2pHSDWlLOOkVH2qrmy/VBG226FZ47qobKW1PkBRSOoHQfqaxfyU25xT8QfFHTFDxCKJdpB+ZJUyr7hRxS/Di2uxfM6dFKXSc8/GcDhBwrg4zjFaSigJ9pyW4iRamx0XcVJHt8iDVXG3ZN0h6tTCtJaXD6FBUq4ueXvT/IgHJ69yQPtQZ9cs3F/REZNK/7DHiRMW1pG2RAOHGtyj9f/wAoWBVN2EmrVi14ftBQnvK2kttpAynPU44/SmcsqaBxVpmnVtxdYfLIJO3jgYA9KlJpELYv3n5I0ZpOcGQ+4cnvlKf7Jq0Xsn6BjrYBzx9qIQamk/LnjpXHG5s+WyrHUjmoRAQs6SiO65328V1kMB2N34m8R21j5Q884fc71f6CiS8I+ifY3fjdRXGS/kgE7hjOUIA+X8yc1WtHPQx2q4rTAl3tfK8llhI/9vjk/ahvSZKjcqIFiKnPMmunLjpzn0HpVGtB0xV8X5cq3yrS/GeLRejuBW3uAvI/ua0+B/FivI/kf//Z" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: white;">Matthew Finkle</div>
+                        <div style="font-size: 0.8rem; color: #f4d03f;">Founder</div>
+                    </div>
+                    <!-- CTO -->
+                    <div style="text-align: center;">
+                        <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(244, 208, 63, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin: 0 auto 10px; border: 3px dashed rgba(244, 208, 63, 0.4);">👤</div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: white;">CTO</div>
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5); font-style: italic;">Hiring</div>
+                    </div>
+                    <!-- COO -->
+                    <div style="text-align: center;">
+                        <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(244, 208, 63, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin: 0 auto 10px; border: 3px dashed rgba(244, 208, 63, 0.4);">👤</div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: white;">COO</div>
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5); font-style: italic;">Hiring</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advisors Row -->
+        <div style="max-width: 1100px; width: 100%; margin-bottom: 20px;">
+            <div style="background: rgba(52, 152, 219, 0.1); border: 2px solid rgba(52, 152, 219, 0.3); border-radius: 20px; padding: 20px 30px;">
+                <h3 style="color: #3498db; font-size: 1.1rem; margin-bottom: 15px; text-align: center;">Advisors</h3>
+                <div style="display: flex; justify-content: center; gap: 40px;">
+                    <!-- Brendan Farmer -->
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #3498db, #2980b9); display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; border: 3px solid rgba(52, 152, 219, 0.5); overflow: hidden;"><img src="data:image/jpeg;base64,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" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <div style="font-size: 0.85rem; font-weight: 700; color: white;">Brendan Farmer</div>
+                        <div style="font-size: 0.7rem; color: #3498db;">Co-Founder, Polygon</div>
+                        <div style="font-size: 0.65rem; color: rgba(255,255,255,0.5);">Blockchain</div>
+                    </div>
+                    <!-- AI Advisor -->
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(52, 152, 219, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 8px; border: 3px dashed rgba(52, 152, 219, 0.4);">🤖</div>
+                        <div style="font-size: 0.85rem; font-weight: 700; color: white;">AI Advisor</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); font-style: italic;">TBD</div>
+                    </div>
+                    <!-- Fintech Advisor -->
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(52, 152, 219, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 8px; border: 3px dashed rgba(52, 152, 219, 0.4);">💳</div>
+                        <div style="font-size: 0.85rem; font-weight: 700; color: white;">Fintech Advisor</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); font-style: italic;">TBD</div>
+                    </div>
+                    <!-- Marketing Advisor -->
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(52, 152, 219, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin: 0 auto 8px; border: 3px dashed rgba(52, 152, 219, 0.4);">📣</div>
+                        <div style="font-size: 0.85rem; font-weight: 700; color: white;">Marketing Advisor</div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); font-style: italic;">TBD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        const slides = document.querySelectorAll('.slide');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        function goToSlide(index) {
+            slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Intersection Observer for navigation dots
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(slides).indexOf(entry.target);
+                    navDots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                    
+                    // Trigger animations based on slide
+                    if (index === 3) setTimeout(runPlatformAnimation, 500);
+                    if (index === 5) setTimeout(runDiffAnimation, 300);
+                    if (index === 7) setTimeout(runEmployeeAnimation, 500);
+                    if (index === 8) setTimeout(runInfraAnimation, 500);
+                    if (index === 12) setTimeout(runCircuitAnimation, 300);
+                }
+            });
+        }, observerOptions);
+
+        slides.forEach(slide => observer.observe(slide));
+
+        // ===== SLIDE 4: PLATFORM DEMO ANIMATION =====
+        function runPlatformAnimation() {
+            // Reset
+            document.querySelectorAll('.demo-phone').forEach(p => p.classList.add('dimmed'));
+            document.querySelectorAll('.demo-item').forEach(i => { i.classList.remove('animate-in'); i.style.opacity = '0'; });
+            document.querySelectorAll('.demo-total, .demo-badge').forEach(e => { e.classList.remove('animate-in'); e.style.opacity = '0'; });
+            document.querySelectorAll('.invoice-item').forEach(i => { i.classList.remove('approved'); i.classList.add('pending'); });
+            document.querySelectorAll('.demo-button').forEach(b => b.classList.remove('clicked'));
+            document.querySelectorAll('.demo-confirm-button').forEach(b => { b.classList.remove('processing', 'complete'); });
+            document.querySelectorAll('.demo-balance-card').forEach(c => c.classList.remove('glow'));
+            const status1 = document.getElementById('demo-status1');
+            if (status1) { status1.textContent = 'Pending'; status1.style.color = '#f39c12'; }
+
+            // Phone 1: AP Queue
+            const phone1 = document.getElementById('demo-phone1');
+            phone1.classList.remove('dimmed');
+            
+            setTimeout(() => {
+                document.getElementById('demo-invoice1').classList.add('animate-in');
+            }, 300);
+            setTimeout(() => {
+                document.getElementById('demo-invoice2').classList.add('animate-in');
+            }, 600);
+            setTimeout(() => {
+                document.getElementById('demo-invoice3').classList.add('animate-in');
+            }, 900);
+            setTimeout(() => {
+                document.getElementById('demo-total').classList.add('animate-in');
+            }, 1200);
+            setTimeout(() => {
+                document.getElementById('demo-approveAll').classList.add('clicked');
+                document.querySelectorAll('.invoice-item').forEach(i => {
+                    i.classList.remove('pending');
+                    i.classList.add('approved');
+                });
+                if (status1) { status1.textContent = 'Approved ✓'; status1.style.color = '#27ae60'; }
+            }, 2000);
+
+            // Phone 2: Contractors
+            setTimeout(() => {
+                phone1.classList.add('dimmed');
+                const phone2 = document.getElementById('demo-phone2');
+                phone2.classList.remove('dimmed');
+                document.getElementById('demo-contractorCard').classList.add('glow');
+            }, 3000);
+            setTimeout(() => {
+                document.getElementById('demo-complianceBadge').classList.add('animate-in');
+            }, 3500);
+
+            // Phone 3: Payroll
+            setTimeout(() => {
+                document.getElementById('demo-phone2').classList.add('dimmed');
+                const phone3 = document.getElementById('demo-phone3');
+                phone3.classList.remove('dimmed');
+            }, 5000);
+            setTimeout(() => {
+                const runBtn = document.getElementById('demo-runPayroll');
+                runBtn.classList.add('processing');
+            }, 5500);
+            setTimeout(() => {
+                const runBtn = document.getElementById('demo-runPayroll');
+                runBtn.classList.remove('processing');
+                runBtn.classList.add('complete');
+            }, 7000);
+
+            // Final: Show all
+            setTimeout(() => {
+                document.querySelectorAll('.demo-phone').forEach(p => p.classList.remove('dimmed'));
+            }, 8000);
+        }
+
+        // ===== SLIDE 6: DIFFERENTIATORS ANIMATION =====
+        function runDiffAnimation() {
+            const cards = document.querySelectorAll('.diff-card');
+            cards.forEach(card => card.classList.remove('visible'));
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 200);
+            });
+        }
+
+        // ===== SLIDE 8: EMPLOYEE APP ANIMATION =====
+        function runEmployeeAnimation() {
+            // Reset all phones
+            document.querySelectorAll('.ee-demo-phone').forEach(p => {
+                p.classList.add('ee-dimmed');
+                p.classList.remove('ee-active');
+            });
+
+            const phone1 = document.getElementById('ee-demo-phone1');
+            const phone2 = document.getElementById('ee-demo-phone2');
+            const phone3 = document.getElementById('ee-demo-phone3');
+
+            // Phone 1: Home/Wallet - highlight
+            phone1.classList.remove('ee-dimmed');
+            phone1.classList.add('ee-active');
+
+            // Transition to Phone 2: Get Paid
+            setTimeout(() => {
+                phone1.classList.add('ee-dimmed');
+                phone1.classList.remove('ee-active');
+                phone2.classList.remove('ee-dimmed');
+                phone2.classList.add('ee-active');
+            }, 2500);
+
+            // Simulate selecting amount and confirming
+            setTimeout(() => {
+                const confirmBtn = document.getElementById('ee-confirm-btn');
+                if (confirmBtn) {
+                    confirmBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        confirmBtn.style.transform = 'scale(1)';
+                        confirmBtn.innerHTML = '✓ $500 Sent to Wallet!';
+                        confirmBtn.style.background = '#27ae60';
+                    }, 200);
+                }
+            }, 4000);
+
+            // Transition to Phone 3: Bundles
+            setTimeout(() => {
+                phone2.classList.add('ee-dimmed');
+                phone2.classList.remove('ee-active');
+                phone3.classList.remove('ee-dimmed');
+                phone3.classList.add('ee-active');
+            }, 5500);
+
+            // Animate bundle progress
+            setTimeout(() => {
+                const rentProgress = document.getElementById('ee-rent-progress');
+                const phoneProgress = document.getElementById('ee-phone-progress');
+                const savingsProgress = document.getElementById('ee-savings-progress');
+                const bundleSuccess = document.getElementById('ee-bundle-success');
+                
+                if (rentProgress) rentProgress.style.width = '70%';
+                if (phoneProgress) phoneProgress.style.width = '85%';
+                if (savingsProgress) savingsProgress.style.width = '40%';
+                if (bundleSuccess) bundleSuccess.style.display = 'block';
+            }, 6500);
+
+            // Show all phones at end
+            setTimeout(() => {
+                document.querySelectorAll('.ee-demo-phone').forEach(p => {
+                    p.classList.remove('ee-dimmed');
+                    p.classList.remove('ee-active');
+                });
+            }, 8500);
+        }
+
+        // ===== SLIDE 10: INFRASTRUCTURE ANIMATION =====
+        function runInfraAnimation() {
+            // Reset
+            document.querySelectorAll('.infra-arch-layer').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.infra-service-box').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.infra-batch-node').forEach(n => { n.classList.remove('active', 'processing'); });
+            document.querySelectorAll('.infra-rail-box').forEach(r => r.classList.remove('active'));
+            document.querySelectorAll('.infra-branch-path').forEach(p => p.classList.remove('animate'));
+            document.querySelectorAll('.infra-data-packet').forEach(p => p.classList.remove('animate-down'));
+
+            // Animate architecture stack
+            const layers = ['infra-layer-frontend', 'infra-layer-api', 'infra-layer-services', 'infra-layer-data', 'infra-layer-external'];
+            layers.forEach((id, i) => {
+                setTimeout(() => {
+                    document.getElementById(id)?.classList.add('active');
+                    const packet = document.getElementById(`infra-packet${i + 1}`);
+                    if (packet) packet.classList.add('animate-down');
+                }, i * 400);
+            });
+
+            // Animate services
+            setTimeout(() => {
+                ['infra-svc-ap', 'infra-svc-router', 'infra-svc-ledger', 'infra-svc-payroll'].forEach((id, i) => {
+                    setTimeout(() => document.getElementById(id)?.classList.add('active'), i * 150);
+                });
+            }, 1200);
+
+            // Animate payment flow
+            setTimeout(() => {
+                document.getElementById('infra-node-request')?.classList.add('active');
+            }, 2500);
+            setTimeout(() => {
+                document.getElementById('infra-node-request')?.classList.remove('active');
+                document.getElementById('infra-node-split')?.classList.add('active', 'processing');
+            }, 3200);
+            setTimeout(() => {
+                document.getElementById('infra-node-split')?.classList.remove('processing');
+                document.getElementById('infra-node-router')?.classList.add('active');
+            }, 4000);
+
+            // Animate rail selection
+            setTimeout(() => {
+                document.querySelectorAll('.infra-branch-path').forEach(p => p.classList.add('animate'));
+            }, 4800);
+            setTimeout(() => {
+                document.getElementById('infra-rail-crypto')?.classList.add('active');
+            }, 5500);
+        }
+
+        // ===== SLIDE 14: CIRCUIT LOGO ANIMATION =====
+        function runCircuitAnimation() {
+            const container = document.querySelector('.circuit-logo-container');
+            if (container) {
+                const clone = container.cloneNode(true);
+                container.parentNode.replaceChild(clone, container);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const currentIndex = Array.from(slides).findIndex(slide => {
+                const rect = slide.getBoundingClientRect();
+                return rect.top >= -100 && rect.top <= 100;
+            });
+            
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentIndex > 0) goToSlide(currentIndex - 1);
+            }
+        });
+    </script>
+</body>
+</html>
